@@ -1,0 +1,77 @@
+<view class="page">
+  <!-- 用户卡片 -->
+  <view class="hero">
+    <view class="hero-bg"></view>
+    <view class="user">
+      <view class="avatar">🍽️</view>
+      <view class="user-main">
+        <view class="nick">微信用户</view>
+        <view class="sub">欢迎回来，今天想吃点什么？</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计 -->
+  <view class="stats card">
+    <view class="stat">
+      <view class="stat-num">{{stats.orderCount}}</view>
+      <view class="stat-label">累计订单</view>
+    </view>
+    <view class="stat-line"></view>
+    <view class="stat">
+      <view class="stat-num">{{stats.doneCount}}</view>
+      <view class="stat-label">已完成</view>
+    </view>
+    <view class="stat-line"></view>
+    <view class="stat">
+      <view class="stat-num"><text class="stat-yuan">¥</text>{{stats.spentText}}</view>
+      <view class="stat-label">累计消费</view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="grid card">
+    <view class="grid-item" bindtap="onOrders">
+      <view class="grid-icon">🧾</view>
+      <view class="grid-label">我的订单</view>
+    </view>
+    <view class="grid-item" bindtap="onAdmin">
+      <view class="grid-icon">🏪</view>
+      <view class="grid-label">商家后台</view>
+    </view>
+    <view class="grid-item" bindtap="onCall">
+      <view class="grid-icon">📞</view>
+      <view class="grid-label">联系门店</view>
+    </view>
+    <view class="grid-item" bindtap="onAbout">
+      <view class="grid-icon">💡</view>
+      <view class="grid-label">关于小程序</view>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view class="list card">
+    <view class="list-item" bindtap="onAdmin">
+      <text class="list-icon">🏪</text>
+      <text class="list-title">商家管理后台</text>
+      <text class="list-desc">演示密码 8888</text>
+      <text class="list-arrow">›</text>
+    </view>
+    <view class="list-item" bindtap="onCall">
+      <text class="list-icon">📞</text>
+      <text class="list-title">门店电话</text>
+      <text class="list-desc">{{shop.phone}}</text>
+      <text class="list-arrow">›</text>
+    </view>
+    <view class="list-item" bindtap="onReset">
+      <text class="list-icon">🧹</text>
+      <text class="list-title">重置演示数据</text>
+      <text class="list-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-name">{{shop.name}}</view>
+    <view class="footer-ver">小程序演示版 v{{version}}</view>
+  </view>
+</view>

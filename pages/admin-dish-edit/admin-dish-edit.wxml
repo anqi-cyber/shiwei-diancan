@@ -1,0 +1,119 @@
+<view class="page">
+  <!-- 实时预览 -->
+  <view class="preview">
+    <view class="p-pic" style="background: linear-gradient(135deg, {{bg[0]}}, {{bg[1]}})">{{emoji}}</view>
+    <view class="p-main">
+      <view class="p-name">{{name || '菜品名称'}}</view>
+      <view class="p-desc">{{desc || '一句话描述这道菜'}}</view>
+      <view class="p-price"><text class="yuan">¥</text>{{price || '0'}}</view>
+    </view>
+    <view class="p-state {{isOn ? 'on' : 'off'}}">{{isOn ? '在售' : '已下架'}}</view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="card">
+    <view class="form-row">
+      <text class="f-label">菜品名称</text>
+      <input
+        class="f-input"
+        value="{{name}}"
+        maxlength="12"
+        placeholder="如：招牌红烧肉"
+        placeholder-class="f-ph"
+        bindinput="onName"
+      />
+    </view>
+    <view class="form-row">
+      <text class="f-label">价格</text>
+      <input
+        class="f-input"
+        type="digit"
+        value="{{price}}"
+        placeholder="0"
+        placeholder-class="f-ph"
+        bindinput="onPrice"
+      />
+      <text class="f-unit">元</text>
+    </view>
+    <view class="form-row">
+      <text class="f-label">分类</text>
+      <picker mode="selector" range="{{catNames}}" value="{{catIndex}}" bindchange="onCatChange">
+        <view class="f-value">{{catName}} <text class="chev">›</text></view>
+      </picker>
+    </view>
+    <view class="form-row">
+      <text class="f-label">描述</text>
+      <input
+        class="f-input"
+        value="{{desc}}"
+        maxlength="24"
+        placeholder="如：三层五花 · 冰糖慢炖"
+        placeholder-class="f-ph"
+        bindinput="onDesc"
+      />
+    </view>
+  </view>
+
+  <!-- 图标 -->
+  <view class="card">
+    <view class="card-title">菜品图标</view>
+    <view class="emoji-grid">
+      <view
+        wx:for="{{emojis}}"
+        wx:key="e"
+        class="emoji-item {{emoji === item.e ? 'on' : ''}}"
+        style="background: linear-gradient(135deg, {{item.bg[0]}}, {{item.bg[1]}})"
+        data-idx="{{index}}"
+        bindtap="onPickEmoji"
+      >{{item.e}}</view>
+    </view>
+  </view>
+
+  <!-- 标签 -->
+  <view class="card">
+    <view class="card-title">标签 <text class="card-sub">可多选，展示在菜品名旁</text></view>
+    <view class="chips">
+      <view
+        wx:for="{{tagList}}"
+        wx:key="label"
+        class="chip {{item.on ? 'on' : ''}}"
+        data-label="{{item.label}}"
+        bindtap="onTag"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 规格 -->
+  <view class="card">
+    <view class="card-title">规格 <text class="card-sub">顾客下单时需要选择</text></view>
+    <view
+      wx:for="{{specOptions}}"
+      wx:key="key"
+      class="spec-option {{specKey === item.key ? 'on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onSpec"
+    >
+      <text>{{item.label}}</text>
+      <view class="radio"><view class="radio-dot" wx:if="{{specKey === item.key}}"></view></view>
+    </view>
+  </view>
+
+  <!-- 上架 -->
+  <view class="card switch-card">
+    <view>
+      <view class="switch-title">立即上架</view>
+      <view class="switch-sub">关闭后顾客端不再展示该菜品</view>
+    </view>
+    <switch checked="{{isOn}}" color="#F4511E" bindchange="onStatus" />
+  </view>
+
+  <view class="delete-link" wx:if="{{!isNew}}" bindtap="onDelete">删除这道菜</view>
+
+  <view class="scroll-bottom"></view>
+
+  <!-- 底部保存 -->
+  <view class="bottom-bar">
+    <view class="btn-ghost cancel" bindtap="onCancel">取消</view>
+    <view class="btn-primary save" bindtap="onSave">{{isNew ? '新增菜品' : '保存修改'}}</view>
+  </view>
+</view>

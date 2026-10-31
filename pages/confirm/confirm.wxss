@@ -1,0 +1,332 @@
+.page {
+  min-height: 100vh;
+  background: #f7f3ee;
+}
+
+.scroll {
+  height: 100vh;
+  padding: 24rpx 24rpx 0;
+  box-sizing: border-box;
+}
+
+.card {
+  margin-bottom: 20rpx;
+}
+
+.block-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1e2128;
+  margin-bottom: 20rpx;
+}
+
+.count {
+  font-size: 21rpx;
+  color: #b4b9c2;
+  font-weight: 400;
+  margin-left: 10rpx;
+}
+
+/* 就餐方式 */
+.mode-row {
+  display: flex;
+}
+
+.mode-chip {
+  flex: 1;
+  height: 96rpx;
+  border-radius: 18rpx;
+  background: #f8f5f0;
+  border: 2rpx solid #f8f5f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #6b7280;
+}
+
+.mode-chip:first-child {
+  margin-right: 20rpx;
+}
+
+.mode-chip.on {
+  background: #fff1e9;
+  border-color: #ffc7ac;
+  color: #e85525;
+  font-weight: 600;
+}
+
+.mode-emoji {
+  margin-right: 8rpx;
+  font-size: 28rpx;
+}
+
+.line {
+  height: 1rpx;
+  background: #f4f0ea;
+  margin: 24rpx 0 4rpx;
+}
+
+.row-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 22rpx;
+  font-size: 26rpx;
+}
+
+.label {
+  color: #5c6270;
+}
+
+.value {
+  color: #1e2128;
+  font-weight: 500;
+}
+
+.chev {
+  color: #b9bec7;
+  margin-left: 6rpx;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+}
+
+.step-btn {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  line-height: 1;
+}
+
+.step-btn.minus {
+  border: 1rpx solid #e9e4dd;
+  color: #5c6270;
+  background: #fff;
+}
+
+.step-btn.plus {
+  background: linear-gradient(135deg, #ff8a4c, #f4511e);
+  color: #fff;
+}
+
+.step-num {
+  min-width: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+/* 商品 */
+.item {
+  display: flex;
+  align-items: center;
+  padding: 14rpx 0;
+}
+
+.item-pic {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 16rpx;
+  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.item-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 18rpx;
+}
+
+.item-name {
+  font-size: 27rpx;
+  color: #1e2128;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item-spec {
+  font-size: 20rpx;
+  color: #9aa0ac;
+  margin-top: 2rpx;
+}
+
+.item-qty {
+  font-size: 24rpx;
+  color: #9aa0ac;
+  margin: 0 20rpx;
+}
+
+.item-price {
+  font-size: 26rpx;
+  color: #1e2128;
+  font-weight: 500;
+  min-width: 90rpx;
+  text-align: right;
+}
+
+.sum-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 22rpx;
+  font-size: 26rpx;
+  color: #5c6270;
+}
+
+.sum-value {
+  color: #f4511e;
+  font-weight: 700;
+  font-size: 30rpx;
+}
+
+/* 满减 */
+.coupon {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #fff6ef, #fffaf5);
+  border: 1rpx solid #ffe3d2;
+}
+
+.coupon-icon {
+  font-size: 40rpx;
+  margin-right: 18rpx;
+}
+
+.coupon-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.coupon-title {
+  font-size: 27rpx;
+  font-weight: 600;
+  color: #8a4a24;
+}
+
+.coupon-sub {
+  font-size: 21rpx;
+  color: #b08a72;
+  margin-top: 2rpx;
+}
+
+.coupon-state {
+  font-size: 24rpx;
+  color: #b4b9c2;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: #fff;
+  border: 1rpx dashed #e9e4dd;
+}
+
+.coupon-state.on {
+  color: #e85525;
+  border-color: #ffc7ac;
+  font-weight: 600;
+}
+
+/* 备注 */
+.quick-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8rpx;
+}
+
+.quick-tag {
+  font-size: 22rpx;
+  color: #5c6270;
+  background: #f8f5f0;
+  border-radius: 999rpx;
+  padding: 10rpx 22rpx;
+  margin: 0 14rpx 14rpx 0;
+}
+
+.remark-input {
+  width: 100%;
+  min-height: 110rpx;
+  background: #faf8f5;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  font-size: 25rpx;
+  color: #1e2128;
+  box-sizing: border-box;
+}
+
+.remark-ph {
+  color: #b4b9c2;
+  font-size: 24rpx;
+}
+
+.counter {
+  text-align: right;
+  font-size: 20rpx;
+  color: #c3c7ce;
+  margin-top: 8rpx;
+}
+
+/* 费用 */
+.fee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 25rpx;
+  color: #1e2128;
+  padding: 8rpx 0;
+}
+
+.fee-label {
+  color: #5c6270;
+}
+
+.fee-minus {
+  color: #f4511e;
+}
+
+.tips {
+  text-align: center;
+  font-size: 20rpx;
+  color: #b4b9c2;
+  padding: 10rpx 40rpx 0;
+  line-height: 1.6;
+}
+
+.scroll-bottom {
+  height: 200rpx;
+}
+
+/* 底部栏 */
+.total-box {
+  flex: 1;
+}
+
+.total-label {
+  font-size: 20rpx;
+  color: #9aa0ac;
+}
+
+.total-value {
+  color: #f4511e;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.total-value .yuan {
+  font-size: 22rpx;
+}
+
+.submit {
+  width: 300rpx;
+  height: 84rpx;
+  font-size: 29rpx;
+}

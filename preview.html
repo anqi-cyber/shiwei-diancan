@@ -1,0 +1,2609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>拾味小馆 · 线上点餐小程序 界面预览</title>
+<!-- 单文件版本：样式已内联，可直接双击在浏览器打开 -->
+<style id="dsh-inlined-css">
+
+/* ===== css/base.css ===== */
+.screen {
+  --brand: #F4511E;
+  --brand-light: #FF8A4C;
+  --brand-soft: #FFF1E9;
+  --ink: #1E2128;
+  --ink-2: #5C6270;
+  --ink-3: #9AA0AC;
+  --line: #F1ECE6;
+  --bg: #F7F3EE;
+  --green: #21A366;
+  --red: #E5484D;
+  --gold: #F5A623;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 28px;
+  line-height: 1.5;
+}
+
+.screen view,
+.screen text,
+.screen scroll-view,
+.screen input,
+.screen textarea,
+.screen picker,
+.screen button {
+  box-sizing: border-box;
+}
+
+.screen .row {
+  display: flex;
+  align-items: center;
+}
+
+.screen .col {
+  display: flex;
+  flex-direction: column;
+}
+
+.screen .between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.screen .center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen .flex1 {
+  flex: 1;
+  min-width: 0;
+}
+
+.screen .muted {
+  color: var(--ink-3);
+}
+
+.screen .small {
+  font-size: 22px;
+}
+
+.screen .bold {
+  font-weight: 600;
+}
+
+.screen .ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen .card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 8px 24px rgba(31, 35, 41, 0.05);
+}
+
+.screen .page-pad {
+  padding: 24px;
+}
+
+.screen .divider {
+  height: 1px;
+  background: var(--line);
+}
+
+.screen .price {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.screen .yuan {
+  font-size: 22px;
+  margin-right: 2px;
+  font-weight: 600;
+}
+
+.screen .btn-primary {
+  background: linear-gradient(135deg, #FF8A4C, #F4511E);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 30px;
+  font-weight: 600;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(244, 81, 30, 0.26);
+}
+
+.screen .btn-primary.disabled {
+  background: #E8E3DC;
+  color: #B4B9C2;
+  box-shadow: none;
+}
+
+.screen .btn-ghost {
+  background: #fff;
+  border: 1px solid #E9E4DD;
+  color: var(--ink-2);
+  border-radius: 999px;
+  height: 64px;
+  padding: 0 30px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen .btn-ghost.brand {
+  color: var(--brand);
+  border-color: #FFD3BE;
+  background: var(--brand-soft);
+}
+
+.screen .btn-mini {
+  height: 56px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FF8A4C, #F4511E);
+  color: #fff;
+  font-weight: 600;
+}
+
+.screen .tag {
+  font-size: 18px;
+  line-height: 30px;
+  padding: 0 8px;
+  border-radius: 6px;
+  margin-left: 8px;
+  font-weight: 400;
+  flex: none;
+}
+
+.screen .tag-hot {
+  color: #E85525;
+  background: #FFF0E8;
+}
+
+.screen .tag-spicy {
+  color: #D4380D;
+  background: #FFF1F0;
+}
+
+.screen .tag-green {
+  color: #21A366;
+  background: #EAF7F0;
+}
+
+.screen .empty {
+  padding: 120px 0 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--ink-3);
+  font-size: 26px;
+}
+
+.screen .empty-emoji {
+  font-size: 92px;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.screen .empty-tip {
+  margin-top: 8px;
+  font-size: 22px;
+  color: #B4B9C2;
+}
+
+.screen .bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 24px calc(16px + 0px);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -6px 24px rgba(31, 35, 41, 0.06);
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+.screen {
+  --brand: #F4511E;
+  --brand-light: #FF8A4C;
+  --brand-soft: #FFF1E9;
+  --ink: #1E2128;
+  --ink-2: #5C6270;
+  --ink-3: #9AA0AC;
+  --line: #F1ECE6;
+  --bg: #F7F3EE;
+  --green: #21A366;
+  --red: #E5484D;
+  --gold: #F5A623;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 28px;
+  line-height: 1.5;
+}
+
+/* ===== css/screen-menu.css ===== */
+.screen--menu .page {
+  display: flex;
+  flex-direction: column;
+  height: 1472px;
+  background: #f7f3ee;
+}
+
+.screen--menu .header {
+  flex: none;
+  padding: 20px 24px 12px;
+  background: linear-gradient(180deg, #fff1e4 0%, #fff8f1 100%);
+}
+
+.screen--menu .shop {
+  display: flex;
+  align-items: center;
+}
+
+.screen--menu .shop-logo {
+  width: 88px;
+  height: 88px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ff8a4c, #f4511e);
+  color: #fff;
+  font-size: 42px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(244, 81, 30, 0.24);
+  flex: none;
+}
+
+.screen--menu .shop-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 20px;
+}
+
+.screen--menu .shop-name {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.screen--menu .shop-branch {
+  font-size: 22px;
+  color: #9aa0ac;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.screen--menu .shop-meta {
+  display: flex;
+  align-items: center;
+  font-size: 21px;
+  color: #8a8f99;
+  margin-top: 6px;
+}
+
+.screen--menu .star {
+  color: #f5a623;
+  font-weight: 600;
+  flex: none;
+}
+
+.screen--menu .meta-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen--menu .dot {
+  margin: 0 8px;
+  color: #d5d0c9;
+}
+
+.screen--menu .shop-state {
+  font-size: 21px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  flex: none;
+}
+
+.screen--menu .shop-state.open {
+  color: #21a366;
+  background: rgba(33, 163, 102, 0.1);
+}
+
+.screen--menu .shop-state.closed {
+  color: #9aa0ac;
+  background: rgba(154, 160, 172, 0.14);
+}
+
+.screen--menu .notice {
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 14px;
+  padding: 12px 18px;
+}
+
+.screen--menu .notice-icon {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.screen--menu .notice-text {
+  flex: 1;
+  font-size: 22px;
+  color: #8a6a52;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen--menu .notice-arrow {
+  color: #c9b9ab;
+  font-size: 26px;
+  margin-left: 8px;
+}
+
+.screen--menu .mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.screen--menu .modes {
+  display: flex;
+  background: #fff;
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.screen--menu .mode {
+  padding: 8px 28px;
+  font-size: 24px;
+  color: #8a8f99;
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+
+.screen--menu .mode.on {
+  background: linear-gradient(135deg, #ff8a4c, #f4511e);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(244, 81, 30, 0.24);
+}
+
+.screen--menu .table-pick {
+  font-size: 23px;
+  color: #5c6270;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.screen--menu .chev {
+  color: #b9bec7;
+  margin-left: 6px;
+}
+
+.screen--menu .body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  margin-top: 8px;
+}
+
+.screen--menu .cats {
+  width: 168px;
+  height: 100%;
+  flex: none;
+  background: #f2ede6;
+}
+
+.screen--menu .cat {
+  position: relative;
+  padding: 26px 10px;
+  font-size: 24px;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.3;
+  transition: all 0.2s;
+}
+
+.screen--menu .cat.on {
+  background: #f7f3ee;
+  color: #1e2128;
+  font-weight: 700;
+}
+
+.screen--menu .cat.on::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -16px;
+  width: 6px;
+  height: 32px;
+  background: #f4511e;
+  border-radius: 0 6px 6px 0;
+}
+
+.screen--menu .cat-text {
+  display: block;
+  word-break: break-all;
+}
+
+.screen--menu .list {
+  flex: 1;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.screen--menu .section-head {
+  display: flex;
+  align-items: baseline;
+  padding: 24px 4px 18px;
+}
+
+.screen--menu .section-name {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1e2128;
+}
+
+.screen--menu .section-sub {
+  font-size: 20px;
+  color: #b4b9c2;
+  margin-left: 10px;
+}
+
+.screen--menu .dish {
+  display: flex;
+  background: #fff;
+  border-radius: 22px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 18px rgba(31, 35, 41, 0.04);
+}
+
+.screen--menu .dish-pic {
+  width: 148px;
+  height: 148px;
+  border-radius: 18px;
+  font-size: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  line-height: 1;
+}
+
+.screen--menu .dish-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.screen--menu .dish-name {
+  font-size: 30px;
+  font-weight: 600;
+  color: #1e2128;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen--menu .dish-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.screen--menu .dish-tags .tag {
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+.screen--menu .dish-desc {
+  font-size: 22px;
+  color: #9aa0ac;
+  margin-top: 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen--menu .dish-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.screen--menu .dish-price {
+  color: #f4511e;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.screen--menu .btn-add {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8a4c, #f4511e);
+  color: #fff;
+  font-size: 38px;
+  line-height: 48px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(244, 81, 30, 0.3);
+}
+
+.screen--menu .btn-spec {
+  position: relative;
+  padding: 9px 22px;
+  border-radius: 999px;
+  background: #fff1e9;
+  color: #e85525;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.screen--menu .spec-dot {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  min-width: 30px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 6px;
+  border-radius: 15px;
+  background: #f4511e;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+
+.screen--menu .stepper {
+  display: flex;
+  align-items: center;
+}
+
+.screen--menu .step-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.screen--menu .step-btn.minus {
+  border: 1px solid #e9e4dd;
+  color: #5c6270;
+  background: #fff;
+}
+
+.screen--menu .step-btn.plus {
+  background: linear-gradient(135deg, #ff8a4c, #f4511e);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(244, 81, 30, 0.25);
+}
+
+.screen--menu .step-num {
+  min-width: 52px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.screen--menu .list-end {
+  text-align: center;
+  font-size: 20px;
+  color: #c3c7ce;
+  padding: 20px 0 10px;
+}
+
+.screen--menu .list-bottom {
+  height: 210px;
+}
+
+.screen--menu .cartbar-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 24px calc(16px + 0px);
+  z-index: 30;
+}
+
+.screen--menu .cartbar {
+  height: 108px;
+  background: #1e2128;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px 0 28px;
+  box-shadow: 0 14px 32px rgba(30, 33, 40, 0.26);
+}
+
+.screen--menu .cart-icon {
+  position: relative;
+  font-size: 42px;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.screen--menu .cart-icon.bump {
+  transform: scale(1.22);
+}
+
+.screen--menu .badge {
+  position: absolute;
+  top: -12px;
+  right: -16px;
+  min-width: 32px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 6px;
+  border-radius: 16px;
+  background: #f4511e;
+  color: #fff;
+  font-size: 19px;
+  text-align: center;
+  border: 2px solid #1e2128;
+}
+
+.screen--menu .cart-sum {
+  flex: 1;
+  min-width: 0;
+  margin-left: 22px;
+}
+
+.screen--menu .cart-total {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.screen--menu .cart-total .yuan {
+  font-size: 22px;
+}
+
+.screen--menu .cart-empty {
+  color: #9aa0ac;
+  font-size: 26px;
+}
+
+.screen--menu .cart-tip {
+  color: #8a8f99;
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.screen--menu .cart-go {
+  height: 84px;
+  padding: 0 40px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff8a4c, #f4511e);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen--menu .cart-go.disabled {
+  background: #3a3f47;
+  color: #7d838d;
+}
+
+.screen--menu .mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(20, 22, 26, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 25;
+}
+
+.screen--menu .mask.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.screen--menu .cart-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-bottom: calc(140px + 0px);
+  background: #fff;
+  border-radius: 28px 28px 0 0;
+  transform: translateY(115%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  z-index: 26;
+}
+
+.screen--menu .cart-panel.show {
+  transform: translateY(0);
+}
+
+.screen--menu .cp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 32px 16px;
+}
+
+.screen--menu .cp-title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.screen--menu .cp-clear {
+  font-size: 24px;
+  color: #9aa0ac;
+  padding: 6px 0 6px 20px;
+}
+
+.screen--menu .cp-list {
+  max-height: 50vh;
+  padding: 0 32px;
+}
+
+.screen--menu .cp-item {
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #f4f0ea;
+}
+
+.screen--menu .cp-pic {
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  font-size: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.screen--menu .cp-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 16px;
+}
+
+.screen--menu .cp-name {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.screen--menu .cp-spec {
+  font-size: 20px;
+  color: #9aa0ac;
+  margin-top: 2px;
+}
+
+.screen--menu .cp-price {
+  font-size: 26px;
+  color: #f4511e;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.screen--menu .cp-step {
+  display: flex;
+  align-items: center;
+}
+
+.screen--menu .cp-bottom {
+  height: 30px;
+}
+
+.screen--menu .sheet-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(20, 22, 26, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 40;
+}
+
+.screen--menu .sheet-mask.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.screen--menu .sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 32px 32px 0 0;
+  transform: translateY(115%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  z-index: 41;
+  padding: 0 32px calc(24px + 0px);
+}
+
+.screen--menu .sheet.show {
+  transform: translateY(0);
+}
+
+.screen--menu .sheet-head {
+  display: flex;
+  align-items: center;
+  padding: 32px 0 20px;
+}
+
+.screen--menu .sheet-pic {
+  width: 128px;
+  height: 128px;
+  border-radius: 22px;
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.screen--menu .sheet-title {
+  flex: 1;
+  min-width: 0;
+  margin-left: 22px;
+}
+
+.screen--menu .sheet-name {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.screen--menu .sheet-desc {
+  font-size: 22px;
+  color: #9aa0ac;
+  margin-top: 6px;
+}
+
+.screen--menu .sheet-close {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f6f2ec;
+  color: #9aa0ac;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.screen--menu .sheet-body {
+  max-height: 46vh;
+}
+
+.screen--menu .spec-group {
+  padding-top: 24px;
+}
+
+.screen--menu .spec-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #1e2128;
+}
+
+.screen--menu .spec-req {
+  font-size: 18px;
+  color: #f4511e;
+  background: #fff1e9;
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.screen--menu .spec-values {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.screen--menu .spec-val {
+  padding: 14px 28px;
+  border-radius: 14px;
+  background: #f8f5f0;
+  color: #5c6270;
+  font-size: 24px;
+  margin: 0 16px 16px 0;
+  border: 1px solid #f8f5f0;
+}
+
+.screen--menu .spec-val.on {
+  background: #fff1e9;
+  color: #e85525;
+  border-color: #ffc7ac;
+  font-weight: 600;
+}
+
+.screen--menu .spec-delta {
+  font-size: 20px;
+  margin-left: 4px;
+}
+
+.screen--menu .sheet-foot {
+  display: flex;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.screen--menu .sheet-price {
+  color: #f4511e;
+  font-size: 40px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.screen--menu .sheet-price-tip {
+  font-size: 20px;
+  color: #b4b9c2;
+  font-weight: 400;
+}
+
+.screen--menu .sheet-stepper {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.screen--menu .sheet-add {
+  height: 76px;
+  padding: 0 40px;
+  font-size: 28px;
+}
+
+
+/* ===== css/screen-confirm.css ===== */
+.screen--confirm .page {
+  min-height: 1472px;
+  background: #f7f3ee;
+}
+
+.screen--confirm .scroll {
+  height: 1472px;
+  padding: 24px 24px 0;
+  box-sizing: border-box;
+}
+
+.screen--confirm .card {
+  margin-bottom: 20px;
+}
+
+.screen--confirm .block-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e2128;
+  margin-bottom: 20px;
+}
+
+.screen--confirm .count {
+  font-size: 21px;
+  color: #b4b9c2;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.screen--confirm .mode-row {
+  display: flex;
+}
+
+.screen--confirm .mode-chip {
+  flex: 1;
+  height: 96px;
+  border-radius: 18px;
+  background: #f8f5f0;
+  border: 2px solid #f8f5f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #6b7280;
+}
+
+.screen--confirm .mode-chip:first-child {
+  margin-right: 20px;
+}
+
+.screen--confirm .mode-chip.on {
+  background: #fff1e9;
+  border-color: #ffc7ac;
+  color: #e85525;
+  font-weight: 600;
+}
+
+.screen--confirm .mode-emoji {
+  margin-right: 8px;
+  font-size: 28px;
+}
+
+.screen--confirm .line {
+  height: 1px;
+  background: #f4f0ea;
+  margin: 24px 0 4px;
+}
+
+.screen--confirm .row-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 22px;
+  font-size: 26px;
+}
+
+.screen--confirm .label {
+  color: #5c6270;
+}
+
+.screen--confirm .value {
+  color: #1e2128;
+  font-weight: 500;
+}
+
+.screen--confirm .chev {
+  color: #b9bec7;
+  margin-left: 6px;
+}
+
+.screen--confirm .stepper {
+  display: flex;
+  align-items: center;
+}
+
+.screen--confirm .step-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.screen--confirm .step-btn.minus {
+  border: 1px solid #e9e4dd;
+  color: #5c6270;
+  background: #fff;
+}
+
+.screen--confirm .step-btn.plus {
+  background: linear-gradient(135deg, #ff8a4c, #f4511e);
+  color: #fff;
+}
+
+.screen--confirm .step-num {
+  min-width: 60px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.screen--confirm .item {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.screen--confirm .item-pic {
+  width: 84px;
+  height: 84px;
+  border-radius: 16px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.screen--confirm .item-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 18px;
+}
+
+.screen--confirm .item-name {
+  font-size: 27px;
+  color: #1e2128;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen--confirm .item-spec {
+  font-size: 20px;
+  color: #9aa0ac;
+  margin-top: 2px;
+}
+
+.screen--confirm .item-qty {
+  font-size: 24px;
+  color: #9aa0ac;
+  margin: 0 20px;
+}
+
+.screen--confirm .item-price {
+  font-size: 26px;
+  color: #1e2128;
+  font-weight: 500;
+  min-width: 90px;
+  text-align: right;
+}
+
+.screen--confirm .sum-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 22px;
+  font-size: 26px;
+  color: #5c6270;
+}
+
+.screen--confirm .sum-value {
+  color: #f4511e;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.screen--confirm .coupon {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #fff6ef, #fffaf5);
+  border: 1px solid #ffe3d2;
+}
+
+.screen--confirm .coupon-icon {
+  font-size: 40px;
+  margin-right: 18px;
+}
+
+.screen--confirm .coupon-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.screen--confirm .coupon-title {
+  font-size: 27px;
+  font-weight: 600;
+  color: #8a4a24;
+}
+
+.screen--confirm .coupon-sub {
+  font-size: 21px;
+  color: #b08a72;
+  margin-top: 2px;
+}
+
+.screen--confirm .coupon-state {
+  font-size: 24px;
+  color: #b4b9c2;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px dashed #e9e4dd;
+}
+
+.screen--confirm .coupon-state.on {
+  color: #e85525;
+  border-color: #ffc7ac;
+  font-weight: 600;
+}
+
+.screen--confirm .quick-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.screen--confirm .quick-tag {
+  font-size: 22px;
+  color: #5c6270;
+  background: #f8f5f0;
+  border-radius: 999px;
+  padding: 10px 22px;
+  margin: 0 14px 14px 0;
+}
+
+.screen--confirm .remark-input {
+  width: 100%;
+  min-height: 110px;
+  background: #faf8f5;
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 25px;
+  color: #1e2128;
+  box-sizing: border-box;
+}
+
+.screen--confirm .remark-ph {
+  color: #b4b9c2;
+  font-size: 24px;
+}
+
+.screen--confirm .counter {
+  text-align: right;
+  font-size: 20px;
+  color: #c3c7ce;
+  margin-top: 8px;
+}
+
+.screen--confirm .fee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 25px;
+  color: #1e2128;
+  padding: 8px 0;
+}
+
+.screen--confirm .fee-label {
+  color: #5c6270;
+}
+
+.screen--confirm .fee-minus {
+  color: #f4511e;
+}
+
+.screen--confirm .tips {
+  text-align: center;
+  font-size: 20px;
+  color: #b4b9c2;
+  padding: 10px 40px 0;
+  line-height: 1.6;
+}
+
+.screen--confirm .scroll-bottom {
+  height: 200px;
+}
+
+.screen--confirm .total-box {
+  flex: 1;
+}
+
+.screen--confirm .total-label {
+  font-size: 20px;
+  color: #9aa0ac;
+}
+
+.screen--confirm .total-value {
+  color: #f4511e;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.screen--confirm .total-value .yuan {
+  font-size: 22px;
+}
+
+.screen--confirm .submit {
+  width: 300px;
+  height: 84px;
+  font-size: 29px;
+}
+
+
+/* ===== css/screen-order-detail.css ===== */
+.screen--order-detail .page {
+  min-height: 1472px;
+  background: #f7f3ee;
+}
+
+.screen--order-detail .scroll {
+  height: 1472px;
+}
+
+.screen--order-detail .hero {
+  padding: 44px 32px 40px;
+  color: #fff;
+  border-radius: 0 0 36px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen--order-detail .hero::after {
+  content: '';
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.screen--order-detail .hero.warm {
+  background: linear-gradient(135deg, #ffa45c, #f4511e);
+}
+
+.screen--order-detail .hero.green {
+  background: linear-gradient(135deg, #3fd08a, #1e9e63);
+}
+
+.screen--order-detail .hero.grey {
+  background: linear-gradient(135deg, #aab0ba, #7c828c);
+}
+
+.screen--order-detail .hero-status {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.screen--order-detail .hero-desc {
+  font-size: 24px;
+  opacity: 0.92;
+  margin-top: 8px;
+}
+
+.screen--order-detail .hero-code {
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 20px;
+  padding: 20px 26px;
+  display: inline-block;
+  min-width: 240px;
+}
+
+.screen--order-detail .code-label {
+  font-size: 20px;
+  opacity: 0.85;
+}
+
+.screen--order-detail .code-num {
+  font-size: 54px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  line-height: 1.2;
+}
+
+.screen--order-detail .code-tip {
+  font-size: 19px;
+  opacity: 0.8;
+}
+
+.screen--order-detail .hero-mode {
+  display: inline-block;
+  margin-top: 26px;
+  font-size: 22px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 8px 22px;
+}
+
+.screen--order-detail .card {
+  margin: 0 24px 20px;
+}
+
+.screen--order-detail .card:first-of-type {
+  margin-top: 22px;
+}
+
+.screen--order-detail .card-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e2128;
+  margin-bottom: 20px;
+}
+
+.screen--order-detail .card-sub {
+  font-size: 20px;
+  color: #9aa0ac;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.screen--order-detail .steps {
+  padding-top: 4px;
+}
+
+.screen--order-detail .step {
+  display: flex;
+}
+
+.screen--order-detail .step-line {
+  width: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: none;
+}
+
+.screen--order-detail .step-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e4dfd8;
+  margin-top: 14px;
+  flex: none;
+}
+
+.screen--order-detail .step.done .step-dot {
+  background: #ffb08c;
+}
+
+.screen--order-detail .step.active .step-dot {
+  background: #f4511e;
+  box-shadow: 0 0 0 8px rgba(244, 81, 30, 0.14);
+}
+
+.screen--order-detail .step-bar {
+  width: 2px;
+  flex: 1;
+  min-height: 34px;
+  background: #f1ece6;
+  margin: 8px 0;
+}
+
+.screen--order-detail .step-main {
+  flex: 1;
+  padding: 0 0 26px 16px;
+}
+
+.screen--order-detail .step-label {
+  font-size: 26px;
+  color: #b4b9c2;
+  line-height: 1.4;
+}
+
+.screen--order-detail .step.done .step-label {
+  color: #5c6270;
+}
+
+.screen--order-detail .step.active .step-label {
+  color: #1e2128;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.screen--order-detail .step-time {
+  font-size: 20px;
+  color: #c3c7ce;
+  margin-top: 2px;
+}
+
+.screen--order-detail .cancel-tip {
+  margin-top: 6px;
+  font-size: 21px;
+  color: #b4b9c2;
+  background: #faf8f5;
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+.screen--order-detail .item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.screen--order-detail .item-pic {
+  width: 82px;
+  height: 82px;
+  border-radius: 16px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.screen--order-detail .item-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 18px;
+}
+
+.screen--order-detail .item-name {
+  font-size: 27px;
+  color: #1e2128;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen--order-detail .item-spec {
+  font-size: 20px;
+  color: #9aa0ac;
+  margin-top: 2px;
+}
+
+.screen--order-detail .item-qty {
+  font-size: 23px;
+  color: #9aa0ac;
+  margin: 0 20px;
+}
+
+.screen--order-detail .item-price {
+  font-size: 26px;
+  color: #1e2128;
+  font-weight: 500;
+  min-width: 90px;
+  text-align: right;
+}
+
+.screen--order-detail .line {
+  height: 1px;
+  background: #f4f0ea;
+  margin: 18px 0 10px;
+}
+
+.screen--order-detail .fee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 25px;
+  color: #5c6270;
+  padding: 8px 0;
+}
+
+.screen--order-detail .fee-row .minus {
+  color: #f4511e;
+}
+
+.screen--order-detail .total-row {
+  margin-top: 8px;
+  padding-top: 18px;
+  border-top: 1px dashed #efe9e2;
+  color: #1e2128;
+  font-weight: 500;
+}
+
+.screen--order-detail .total-row .total {
+  color: #f4511e;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.screen--order-detail .info-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 24px;
+}
+
+.screen--order-detail .info-label {
+  color: #9aa0ac;
+  flex: none;
+  margin-right: 24px;
+}
+
+.screen--order-detail .info-value {
+  color: #1e2128;
+  text-align: right;
+  word-break: break-all;
+}
+
+.screen--order-detail .info-value.remark {
+  color: #8a4a24;
+}
+
+.screen--order-detail .copy {
+  color: #f4511e;
+  font-size: 21px;
+  margin-left: 6px;
+}
+
+.screen--order-detail .bar-btn {
+  flex: 1;
+  height: 84px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.screen--order-detail .bar-btn + .bar-btn {
+  margin-left: 20px;
+}
+
+.screen--order-detail .bar-btn.ghost {
+  background: #fff;
+  border: 1px solid #e9e4dd;
+  color: #5c6270;
+  flex: 0.6;
+  font-weight: 400;
+}
+
+.screen--order-detail .bar-btn.danger {
+  background: #fff1f0;
+  border: 1px solid #ffd4d1;
+  color: #e5484d;
+}
+
+.screen--order-detail .bar-btn.primary {
+  background: linear-gradient(135deg, #ff8a4c, #f4511e);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(244, 81, 30, 0.24);
+}
+
+.screen--order-detail .scroll-bottom {
+  height: 190px;
+}
+
+.screen--order-detail .missing {
+  padding-top: 220px;
+}
+
+.screen--order-detail .missing-btn {
+  width: 300px;
+  height: 80px;
+  margin-top: 36px;
+  font-size: 26px;
+}
+
+
+/* ===== css/screen-admin.css ===== */
+.screen--admin .page {
+  min-height: 1472px;
+  background: #f7f3ee;
+  padding-bottom: 70px;
+}
+
+.screen--admin .lock {
+  padding: 170px 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screen--admin .lock-icon {
+  font-size: 96px;
+  line-height: 1;
+}
+
+.screen--admin .lock-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: 24px;
+  letter-spacing: 2px;
+}
+
+.screen--admin .lock-desc {
+  font-size: 24px;
+  color: #9aa0ac;
+  margin-top: 8px;
+}
+
+.screen--admin .pin-input {
+  margin-top: 44px;
+  width: 440px;
+  height: 100px;
+  background: #fff;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 40px;
+  letter-spacing: 18px;
+  text-indent: 18px;
+  box-shadow: 0 10px 28px rgba(31, 35, 41, 0.07);
+}
+
+.screen--admin .pin-ph {
+  letter-spacing: 6px;
+  color: #d5d0c9;
+  font-size: 32px;
+}
+
+.screen--admin .pin-error {
+  color: #e5484d;
+  font-size: 22px;
+  margin-top: 16px;
+}
+
+.screen--admin .lock-btn {
+  width: 440px;
+  margin-top: 32px;
+}
+
+.screen--admin .lock-tip {
+  margin-top: 30px;
+  font-size: 21px;
+  color: #b4b9c2;
+}
+
+.screen--admin .hero {
+  margin: 24px 24px 0;
+  padding: 36px 32px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #33383f, #1e2128 70%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen--admin .hero::after {
+  content: '';
+  position: absolute;
+  right: -70px;
+  top: -90px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(244, 81, 30, 0.22);
+}
+
+.screen--admin .hero-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+}
+
+.screen--admin .hero-label {
+  font-size: 22px;
+  opacity: 0.66;
+}
+
+.screen--admin .hero-value {
+  font-size: 62px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+.screen--admin .hero-yuan {
+  font-size: 28px;
+  margin-right: 4px;
+  font-weight: 600;
+}
+
+.screen--admin .hero-badge {
+  font-size: 21px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  flex: none;
+}
+
+.screen--admin .hero-badge.on {
+  background: rgba(63, 208, 138, 0.16);
+  color: #5be0a0;
+}
+
+.screen--admin .hero-badge.off {
+  background: rgba(255, 255, 255, 0.12);
+  color: #c3c7ce;
+}
+
+.screen--admin .hero-meta {
+  font-size: 21px;
+  opacity: 0.58;
+  margin-top: 12px;
+  position: relative;
+}
+
+.screen--admin .metrics {
+  display: flex;
+  align-items: center;
+  margin: 20px 24px;
+  padding: 26px 0;
+}
+
+.screen--admin .metric {
+  flex: 1;
+  text-align: center;
+}
+
+.screen--admin .metric-num {
+  font-size: 40px;
+  font-weight: 700;
+  color: #1e2128;
+  line-height: 1.2;
+}
+
+.screen--admin .metric-num.warn {
+  color: #d97706;
+}
+
+.screen--admin .metric-num.brand {
+  color: #f4511e;
+}
+
+.screen--admin .metric-label {
+  font-size: 20px;
+  color: #9aa0ac;
+  margin-top: 4px;
+}
+
+.screen--admin .metric-line {
+  width: 1px;
+  height: 40px;
+  background: #f1ece6;
+}
+
+.screen--admin .section-title {
+  margin: 26px 32px 14px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #8a8f99;
+}
+
+.screen--admin .actions {
+  margin: 0 24px;
+  padding: 6px 28px;
+}
+
+.screen--admin .action {
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid #f6f2ec;
+}
+
+.screen--admin .action:last-child {
+  border-bottom: none;
+}
+
+.screen--admin .action-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  background: #fff6ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  flex: none;
+}
+
+.screen--admin .action-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 20px;
+}
+
+.screen--admin .action-title {
+  font-size: 27px;
+  font-weight: 600;
+  color: #1e2128;
+}
+
+.screen--admin .action-sub {
+  font-size: 21px;
+  color: #b4b9c2;
+  margin-top: 3px;
+}
+
+.screen--admin .action-badge {
+  min-width: 36px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 10px;
+  border-radius: 18px;
+  background: #f4511e;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  margin-right: 12px;
+}
+
+.screen--admin .action-arrow {
+  color: #c9cdd4;
+  font-size: 30px;
+  flex: none;
+}
+
+.screen--admin .switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 24px;
+}
+
+.screen--admin .switch-title {
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.screen--admin .switch-sub {
+  font-size: 21px;
+  color: #b4b9c2;
+  margin-top: 3px;
+}
+
+.screen--admin .recent {
+  margin: 0 24px;
+  padding: 4px 28px;
+}
+
+.screen--admin .r-item {
+  padding: 24px 0;
+  border-bottom: 1px solid #f6f2ec;
+}
+
+.screen--admin .r-item:last-child {
+  border-bottom: none;
+}
+
+.screen--admin .r-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.screen--admin .r-left {
+  display: flex;
+  align-items: center;
+}
+
+.screen--admin .r-status {
+  font-size: 21px;
+  font-weight: 600;
+  padding: 3px 14px;
+  border-radius: 999px;
+}
+
+.screen--admin .r-status.warn {
+  color: #d97706;
+  background: #fef3c7;
+}
+
+.screen--admin .r-status.brand {
+  color: #f4511e;
+  background: #fff1e9;
+}
+
+.screen--admin .r-status.green {
+  color: #21a366;
+  background: #eaf7f0;
+}
+
+.screen--admin .r-status.muted {
+  color: #9aa0ac;
+  background: #f4f1ec;
+}
+
+.screen--admin .r-mode {
+  font-size: 21px;
+  color: #9aa0ac;
+  margin-left: 12px;
+}
+
+.screen--admin .r-time {
+  font-size: 20px;
+  color: #b4b9c2;
+}
+
+.screen--admin .r-summary {
+  font-size: 24px;
+  color: #5c6270;
+  margin-top: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.screen--admin .r-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.screen--admin .r-total {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1e2128;
+}
+
+.screen--admin .r-total .yuan {
+  font-size: 20px;
+}
+
+.screen--admin .recent-empty {
+  margin: 0 24px;
+  text-align: center;
+  font-size: 23px;
+  color: #b4b9c2;
+  padding: 50px 0;
+}
+
+.screen--admin .lock-out {
+  margin: 50px auto 0;
+  text-align: center;
+  font-size: 23px;
+  color: #b4b9c2;
+  padding: 16px;
+}
+
+.screen--admin .mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(20, 22, 26, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 40;
+}
+
+.screen--admin .mask.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.screen--admin .notice-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 32px 32px 0 0;
+  padding: 34px 32px calc(28px + 0px);
+  transform: translateY(115%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  z-index: 41;
+}
+
+.screen--admin .notice-sheet.show {
+  transform: translateY(0);
+}
+
+.screen--admin .ns-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.screen--admin .ns-input {
+  width: 100%;
+  min-height: 150px;
+  background: #faf8f5;
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 25px;
+  box-sizing: border-box;
+}
+
+.screen--admin .ns-ph {
+  color: #b4b9c2;
+}
+
+.screen--admin .ns-count {
+  text-align: right;
+  font-size: 20px;
+  color: #c3c7ce;
+  margin-top: 8px;
+}
+
+.screen--admin .ns-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.screen--admin .ns-actions .btn-ghost {
+  flex: 1;
+  height: 84px;
+  margin-right: 20px;
+  font-size: 27px;
+}
+
+.screen--admin .ns-save {
+  flex: 1.6;
+  height: 84px;
+}
+
+
+</style>
+
+
+
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(244, 81, 30, 0.16), transparent 60%),
+      radial-gradient(900px 500px at 90% 0%, rgba(63, 208, 138, 0.10), transparent 55%),
+      #0f1216;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    padding: 44px 56px 56px;
+    color: #e8ecf2;
+  }
+
+  .head { margin-bottom: 34px; }
+  .head h1 { margin: 0 0 10px; font-size: 27px; font-weight: 700; letter-spacing: 1px; }
+  .head h1 span { color: #ff7a45; }
+  .head .sub { font-size: 13.5px; color: #8b94a3; letter-spacing: .4px; }
+  .head .tags { margin-top: 16px; display: flex; gap: 8px; }
+  .head .tags span {
+    font-size: 12px; color: #c8cfda; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 999px; padding: 5px 12px;
+  }
+
+  .deck { display: flex; gap: 36px; align-items: flex-start; }
+  .device { width: 375px; flex: none; }
+
+  .phone {
+    width: 375px; height: 812px; border-radius: 42px; background: #fff;
+    box-shadow: 0 26px 60px rgba(0,0,0,.55), 0 0 0 9px #1d2127, 0 0 0 10px #33383f;
+    overflow: hidden; position: relative;
+  }
+
+  .statusbar {
+    height: 32px; background: #fff8f1; display: flex; align-items: center;
+    justify-content: space-between; padding: 0 20px 0 22px;
+    font-size: 12.5px; font-weight: 700; color: #1e2128; letter-spacing: .3px;
+  }
+  .statusbar .right { display: flex; align-items: center; gap: 5px; font-size: 11px; }
+  .battery { width: 20px; height: 10px; border: 1.4px solid #1e2128; border-radius: 2.5px; position: relative; }
+  .battery::after { content:''; position: absolute; right: -4px; top: 2px; width: 2px; height: 4px; background: #1e2128; border-radius: 0 1px 1px 0; }
+  .battery i { position: absolute; inset: 1.4px; width: 70%; background: #1e2128; border-radius: 1px; display: block; }
+
+  .navbar {
+    height: 44px; background: #fff8f1; display: flex; align-items: center;
+    justify-content: center; position: relative; border-bottom: 1px solid rgba(0,0,0,.03);
+  }
+  .navbar .title { font-size: 16px; font-weight: 600; color: #1e2128; letter-spacing: .5px; }
+  .capsule {
+    position: absolute; right: 12px; top: 8px; width: 87px; height: 28px;
+    border-radius: 999px; background: rgba(255,255,255,.72);
+    border: 1px solid rgba(0,0,0,.08); display: flex; align-items: center;
+    justify-content: space-around; color: #1e2128; font-size: 12px; letter-spacing: 1px;
+  }
+  .capsule .dot { width: 3px; height: 3px; border-radius: 50%; background: #1e2128; display: inline-block; box-shadow: 5px 0 0 #1e2128, -5px 0 0 #1e2128; }
+  .capsule .circle { width: 13px; height: 13px; border: 1.4px solid #1e2128; border-radius: 50%; }
+
+  .viewport { width: 375px; height: 736px; overflow: hidden; position: relative; background: #f7f3ee; }
+  .screen {
+    width: 750px; height: 1472px; transform: scale(.5); transform-origin: top left;
+    position: relative; overflow: hidden; background: #f7f3ee;
+  }
+  .screen .list, .screen .cats, .screen .cp-list { overflow-y: auto; }
+  .screen .list::-webkit-scrollbar, .screen .cats::-webkit-scrollbar, .screen .cp-list::-webkit-scrollbar { width: 0; }
+
+  .caption { margin-top: 18px; padding-left: 4px; }
+  .caption b { display: block; font-size: 14px; color: #fff; font-weight: 600; letter-spacing: .4px; }
+  .caption span { display: block; font-size: 12px; color: #7c8595; margin-top: 4px; letter-spacing: .2px; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>拾味小馆 · 线上点餐<span>小程序</span></h1>
+    <div class="sub">微信小程序源码界面预览 · 顾客端点餐流程 + 商家管理后台</div>
+    <div class="tags">
+      <span>9 个页面</span><span>分类联动菜单</span><span>规格 / 购物车</span>
+      <span>下单与订单进度</span><span>商家接单与菜品管理</span>
+    </div>
+  </div>
+
+  <div class="deck">
+    <!-- ① 点餐 -->
+    <div class="device">
+      <div class="phone">
+        <div class="statusbar"><span>9:41</span><span class="right">••• &nbsp;<span class="battery"><i></i></span></span></div>
+        <div class="navbar"><span class="title">拾味小馆</span><div class="capsule"><span class="dot"></span><span class="circle"></span></div></div>
+        <div class="viewport">
+          <div class="screen screen--menu">
+            <div class="page">
+              <div class="header js-header">
+                <div class="shop">
+                  <div class="shop-logo">拾</div>
+                  <div class="shop-main">
+                    <div class="shop-name">拾味小馆<span class="shop-branch">望京店</span></div>
+                    <div class="shop-meta">
+                      <span class="star">★ 4.9</span>
+                      <span class="meta-text"> · 月售 1286 · 10:00 - 21:30</span>
+                    </div>
+                  </div>
+                  <div class="shop-state open">营业中</div>
+                </div>
+
+                <div class="notice">
+                  <span class="notice-icon">📢</span>
+                  <span class="notice-text">现点现炒 · 高峰出餐约 15 分钟，堂食请留意取餐叫号</span>
+                  <span class="notice-arrow">›</span>
+                </div>
+
+                <div class="mode-row">
+                  <div class="modes">
+                    <div class="mode on">堂食</div>
+                    <div class="mode">自取</div>
+                  </div>
+                  <div class="table-pick">桌号 A03<span class="chev">›</span></div>
+                </div>
+              </div>
+
+              <div class="body">
+                <div class="cats">
+                  <div class="cat on"><span class="cat-text">招牌推荐</span></div>
+                  <div class="cat"><span class="cat-text">小炒热菜</span></div>
+                  <div class="cat"><span class="cat-text">汤羹</span></div>
+                  <div class="cat"><span class="cat-text">主食</span></div>
+                  <div class="cat"><span class="cat-text">凉菜小吃</span></div>
+                  <div class="cat"><span class="cat-text">饮品</span></div>
+                </div>
+
+                <div class="list">
+                  <div class="section">
+                    <div class="section-head"><span class="section-name">招牌推荐</span><span class="section-sub">3 道</span></div>
+
+                    <div class="dish">
+                      <div class="dish-pic" style="background: linear-gradient(135deg,#FFE3D3,#FFC6A8)">🍖</div>
+                      <div class="dish-info">
+                        <div class="dish-name">招牌红烧肉</div>
+                        <div class="dish-tags"><span class="tag tag-hot">招牌</span></div>
+                        <div class="dish-desc">三层五花 · 冰糖慢炖两小时</div>
+                        <div class="dish-foot">
+                          <div class="dish-price"><span class="yuan">¥</span>42</div>
+                          <div class="btn-spec">选规格<span class="spec-dot">1</span></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="dish">
+                      <div class="dish-pic" style="background: linear-gradient(135deg,#FFE0E0,#FFC2C2)">🐟</div>
+                      <div class="dish-info">
+                        <div class="dish-name">剁椒鱼头</div>
+                        <div class="dish-tags"><span class="tag tag-hot">招牌</span><span class="tag tag-spicy">中辣</span></div>
+                        <div class="dish-desc">千岛湖花鲢 · 剁椒鲜辣</div>
+                        <div class="dish-foot">
+                          <div class="dish-price"><span class="yuan">¥</span>68</div>
+                          <div class="btn-spec">选规格<span class="spec-dot">1</span></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="dish">
+                      <div class="dish-pic" style="background: linear-gradient(135deg,#FFEDD5,#FFD9A8)">🥩</div>
+                      <div class="dish-info">
+                        <div class="dish-name">小炒黄牛肉</div>
+                        <div class="dish-tags"><span class="tag tag-hot">热销</span><span class="tag tag-spicy">中辣</span></div>
+                        <div class="dish-desc">黄牛肉配螺丝椒 · 猛火快炒</div>
+                        <div class="dish-foot">
+                          <div class="dish-price"><span class="yuan">¥</span>48</div>
+                          <div class="btn-spec">选规格<span class="spec-dot">1</span></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="section-head" style="padding-top:26px"><span class="section-name">小炒热菜</span><span class="section-sub">2 道</span></div>
+
+                    <div class="dish">
+                      <div class="dish-pic" style="background: linear-gradient(135deg,#FFE8D6,#FFC9A3)">🍲</div>
+                      <div class="dish-info">
+                        <div class="dish-name">麻婆豆腐</div>
+                        <div class="dish-tags"><span class="tag tag-spicy">微辣</span></div>
+                        <div class="dish-desc">嫩豆腐 · 汉源花椒</div>
+                        <div class="dish-foot">
+                          <div class="dish-price"><span class="yuan">¥</span>22</div>
+                          <div class="btn-add">+</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="dish">
+                      <div class="dish-pic" style="background: linear-gradient(135deg,#FFE0E0,#FFC2C2)">🍅</div>
+                      <div class="dish-info">
+                        <div class="dish-name">番茄炒蛋</div>
+                        <div class="dish-tags"><span class="tag tag-green">素食</span></div>
+                        <div class="dish-desc">沙瓤番茄 · 土鸡蛋</div>
+                        <div class="dish-foot">
+                          <div class="dish-price"><span class="yuan">¥</span>18</div>
+                          <div class="stepper">
+                            <div class="step-btn minus">−</div>
+                            <span class="step-num">2</span>
+                            <div class="step-btn plus">+</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-bottom"></div>
+                </div>
+              </div>
+
+              <div class="cartbar-wrap">
+                <div class="cartbar">
+                  <div class="cart-icon"><span>🛒</span><div class="badge">3</div></div>
+                  <div class="cart-sum">
+                    <div class="cart-total"><span class="yuan">¥</span>158</div>
+                    <div class="cart-tip">堂食免打包费</div>
+                  </div>
+                  <div class="cart-go">去下单</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption"><b>① 点餐首页</b><span>分类与菜品滚动联动 · 规格弹窗 · 购物车</span></div>
+    </div>
+
+    <!-- ② 确认订单 -->
+    <div class="device">
+      <div class="phone">
+        <div class="statusbar"><span>9:43</span><span class="right">••• &nbsp;<span class="battery"><i></i></span></span></div>
+        <div class="navbar"><span class="title">确认订单</span><div class="capsule"><span class="dot"></span><span class="circle"></span></div></div>
+        <div class="viewport">
+          <div class="screen screen--confirm">
+            <div class="page">
+              <div class="scroll">
+                <div class="card">
+                  <div class="block-title">就餐方式</div>
+                  <div class="mode-row">
+                    <div class="mode-chip on"><span class="mode-emoji">🍽️</span><span>堂食</span></div>
+                    <div class="mode-chip"><span class="mode-emoji">🥡</span><span>到店自取</span></div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="row-line"><span class="label">桌号</span><span class="value">A03 <span class="chev">›</span></span></div>
+                  <div class="row-line">
+                    <span class="label">用餐人数</span>
+                    <div class="stepper"><div class="step-btn minus">−</div><span class="step-num">2</span><div class="step-btn plus">+</div></div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="block-title">商品清单<span class="count">共 3 项</span></div>
+                  <div class="item">
+                    <div class="item-pic" style="background: linear-gradient(135deg,#FFE3D3,#FFC6A8)">🍖</div>
+                    <div class="item-main"><div class="item-name">招牌红烧肉</div><div class="item-spec">小份</div></div>
+                    <div class="item-qty">×1</div><div class="item-price">¥42</div>
+                  </div>
+                  <div class="item">
+                    <div class="item-pic" style="background: linear-gradient(135deg,#FFE0E0,#FFC2C2)">🐟</div>
+                    <div class="item-main"><div class="item-name">剁椒鱼头</div><div class="item-spec">半份</div></div>
+                    <div class="item-qty">×1</div><div class="item-price">¥68</div>
+                  </div>
+                  <div class="item">
+                    <div class="item-pic" style="background: linear-gradient(135deg,#FFEDD5,#FFD9A8)">🥩</div>
+                    <div class="item-main"><div class="item-name">小炒黄牛肉</div><div class="item-spec">中辣</div></div>
+                    <div class="item-qty">×1</div><div class="item-price">¥48</div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="sum-row"><span>小计</span><span class="sum-value">¥158</span></div>
+                </div>
+
+                <div class="card coupon">
+                  <div class="coupon-icon">🎟️</div>
+                  <div class="coupon-main">
+                    <div class="coupon-title">满 50 减 5</div>
+                    <div class="coupon-sub">已满足条件，本单立减</div>
+                  </div>
+                  <div class="coupon-state on">-¥5</div>
+                </div>
+
+                <div class="card">
+                  <div class="block-title">备注<span class="count">口味 / 忌口可在此说明</span></div>
+                  <div class="quick-tags">
+                    <div class="quick-tag">不要辣</div>
+                    <div class="quick-tag">少油少盐</div>
+                    <div class="quick-tag">不要香菜</div>
+                    <div class="quick-tag">打包餐具</div>
+                    <div class="quick-tag">儿童餐具</div>
+                  </div>
+                  <div class="remark-input">不要香菜，少油少盐</div>
+                  <div class="counter">8/50</div>
+                </div>
+
+                <div class="card fee">
+                  <div class="fee-row"><span class="fee-label">菜品金额</span><span>¥158</span></div>
+                  <div class="fee-row"><span class="fee-label">满减优惠</span><span class="fee-minus">-¥5</span></div>
+                </div>
+
+                <div class="tips">提交后商家开始备餐，如有疑问可凭订单号联系店员</div>
+              </div>
+
+              <div class="bottom-bar">
+                <div class="total-box">
+                  <div class="total-label">合计</div>
+                  <div class="total-value"><span class="yuan">¥</span>153</div>
+                </div>
+                <div class="btn-primary submit">提交订单</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption"><b>② 确认订单</b><span>堂食 / 自取切换 · 满减计算 · 备注与人数</span></div>
+    </div>
+
+    <!-- ③ 订单详情 -->
+    <div class="device">
+      <div class="phone">
+        <div class="statusbar"><span>9:45</span><span class="right">••• &nbsp;<span class="battery"><i></i></span></span></div>
+        <div class="navbar"><span class="title">订单详情</span><div class="capsule"><span class="dot"></span><span class="circle"></span></div></div>
+        <div class="viewport">
+          <div class="screen screen--order-detail">
+            <div class="page">
+              <div class="scroll">
+                <div class="hero warm">
+                  <div class="hero-status">制作中</div>
+                  <div class="hero-desc">商家已接单，正在为你现炒</div>
+                  <div class="hero-code">
+                    <div class="code-label">取餐码</div>
+                    <div class="code-num">1288</div>
+                    <div class="code-tip">请留意取餐台叫号</div>
+                  </div>
+                </div>
+
+                <div class="card steps-card">
+                  <div class="card-title">订单进度</div>
+                  <div class="steps">
+                    <div class="step done active">
+                      <div class="step-line"><div class="step-dot"></div><div class="step-bar"></div></div>
+                      <div class="step-main"><div class="step-label">已下单</div><div class="step-time">22:41</div></div>
+                    </div>
+                    <div class="step done">
+                      <div class="step-line"><div class="step-dot"></div><div class="step-bar"></div></div>
+                      <div class="step-main"><div class="step-label">商家接单</div><div class="step-time">22:43</div></div>
+                    </div>
+                    <div class="step">
+                      <div class="step-line"><div class="step-dot"></div><div class="step-bar"></div></div>
+                      <div class="step-main"><div class="step-label">制作完成</div></div>
+                    </div>
+                    <div class="step">
+                      <div class="step-line"><div class="step-dot"></div></div>
+                      <div class="step-main"><div class="step-label">订单完成</div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-title">拾味小馆<span class="card-sub">堂食 · A03</span></div>
+                  <div class="item">
+                    <div class="item-pic" style="background: linear-gradient(135deg,#FFE3D3,#FFC6A8)">🍖</div>
+                    <div class="item-main"><div class="item-name">招牌红烧肉</div><div class="item-spec">小份</div></div>
+                    <div class="item-qty">×1</div><div class="item-price">¥42</div>
+                  </div>
+                  <div class="item">
+                    <div class="item-pic" style="background: linear-gradient(135deg,#F5F1EA,#E9E1D4)">🍚</div>
+                    <div class="item-main"><div class="item-name">五常米饭</div></div>
+                    <div class="item-qty">×2</div><div class="item-price">¥6</div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="fee-row"><span>菜品金额</span><span>¥48</span></div>
+                  <div class="fee-row total-row"><span>实付金额</span><span class="total">¥48</span></div>
+                </div>
+              </div>
+
+              <div class="bottom-bar">
+                <div class="bar-btn ghost">联系商家</div>
+                <div class="bar-btn primary">继续点餐</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption"><b>③ 订单详情</b><span>取餐码 · 进度时间轴 · 5 秒轮询商家状态</span></div>
+    </div>
+
+    <!-- ④ 商家后台 -->
+    <div class="device">
+      <div class="phone">
+        <div class="statusbar"><span>9:47</span><span class="right">••• &nbsp;<span class="battery"><i></i></span></span></div>
+        <div class="navbar"><span class="title">商家后台</span><div class="capsule"><span class="dot"></span><span class="circle"></span></div></div>
+        <div class="viewport">
+          <div class="screen screen--admin">
+            <div class="page">
+              <div class="hero">
+                <div class="hero-top">
+                  <div>
+                    <div class="hero-label">今日营业额</div>
+                    <div class="hero-value"><span class="hero-yuan">¥</span>1286</div>
+                  </div>
+                  <div class="hero-badge on">营业中</div>
+                </div>
+                <div class="hero-meta">今日 18 笔有效订单 · 营业时间 10:00 - 21:30</div>
+              </div>
+
+              <div class="metrics card">
+                <div class="metric"><div class="metric-num warn">2</div><div class="metric-label">待接单</div></div>
+                <div class="metric-line"></div>
+                <div class="metric"><div class="metric-num brand">3</div><div class="metric-label">制作中</div></div>
+                <div class="metric-line"></div>
+                <div class="metric"><div class="metric-num">16</div><div class="metric-label">在售菜品</div></div>
+              </div>
+
+              <div class="section-title">快捷操作</div>
+              <div class="actions card">
+                <div class="action">
+                  <div class="action-icon">🔔</div>
+                  <div class="action-main"><div class="action-title">订单处理</div><div class="action-sub">接单 · 出餐 · 完成</div></div>
+                  <div class="action-badge">2</div>
+                  <div class="action-arrow">›</div>
+                </div>
+                <div class="action">
+                  <div class="action-icon">📖</div>
+                  <div class="action-main"><div class="action-title">菜品管理</div><div class="action-sub">上下架 · 改价 · 新增</div></div>
+                  <div class="action-arrow">›</div>
+                </div>
+                <div class="action">
+                  <div class="action-icon">📢</div>
+                  <div class="action-main"><div class="action-title">门店公告</div><div class="action-sub">现点现炒 · 高峰出餐约 15 分钟</div></div>
+                  <div class="action-arrow">›</div>
+                </div>
+              </div>
+
+              <div class="switch-row card">
+                <div class="switch-main"><div class="switch-title">营业状态</div><div class="switch-sub">顾客可以正常下单</div></div>
+                <div style="width:78px;height:44px;border-radius:999px;background:#f4511e;position:relative;flex:none">
+                  <div style="position:absolute;right:4px;top:4px;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2)"></div>
+                </div>
+              </div>
+
+              <div class="section-title">最近订单</div>
+              <div class="recent card">
+                <div class="r-item">
+                  <div class="r-top">
+                    <div class="r-left"><span class="r-status warn">待接单</span><span class="r-mode">堂食 A05</span></div>
+                    <span class="r-time">2 分钟前</span>
+                  </div>
+                  <div class="r-summary">招牌红烧肉×1、剁椒鱼头×1、五常米饭×2</div>
+                  <div class="r-bottom"><span class="r-total"><span class="yuan">¥</span>116</span><div class="btn-mini">接单</div></div>
+                </div>
+                <div class="r-item">
+                  <div class="r-top">
+                    <div class="r-left"><span class="r-status brand">制作中</span><span class="r-mode">到店自取</span></div>
+                    <span class="r-time">8 分钟前</span>
+                  </div>
+                  <div class="r-summary">手工担担面×1、冰镇酸梅汤×1</div>
+                  <div class="r-bottom"><span class="r-total"><span class="yuan">¥</span>33</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caption"><b>④ 商家后台</b><span>密码 8888 进入 · 营业开关 · 接单与菜品管理</span></div>
+    </div>
+  </div>
+</body>
+</html>

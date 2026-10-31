@@ -1,0 +1,201 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f7f3ee;
+}
+
+.tabs {
+  flex: none;
+  height: 112rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(31, 35, 41, 0.04);
+  z-index: 10;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #6b7280;
+  padding: 13rpx 0;
+  border-radius: 999rpx;
+  transition: all 0.2s;
+}
+
+.tab.on {
+  color: #f4511e;
+  font-weight: 700;
+  background: #fff1e9;
+}
+
+.tab-count {
+  font-size: 18rpx;
+  margin-left: 4rpx;
+  color: #b4b9c2;
+}
+
+.tab.on .tab-count {
+  color: #f4511e;
+}
+
+.list-wrap {
+  height: calc(100vh - 112rpx);
+  padding: 20rpx 24rpx 0;
+  box-sizing: border-box;
+}
+
+.order-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 26rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(31, 35, 41, 0.05);
+}
+
+.oc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.oc-shop {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.oc-shop-name {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1e2128;
+}
+
+.oc-mode {
+  font-size: 19rpx;
+  color: #8a8f99;
+  background: #f6f2ec;
+  border-radius: 6rpx;
+  padding: 2rpx 10rpx;
+  margin-left: 10rpx;
+}
+
+.oc-status {
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  flex: none;
+}
+
+.oc-status.warn {
+  color: #d97706;
+  background: #fef3c7;
+}
+
+.oc-status.brand {
+  color: #f4511e;
+  background: #fff1e9;
+}
+
+.oc-status.green {
+  color: #21a366;
+  background: #eaf7f0;
+}
+
+.oc-status.muted {
+  color: #9aa0ac;
+  background: #f4f1ec;
+}
+
+.oc-body {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.oc-pics {
+  display: flex;
+  flex: none;
+}
+
+.oc-pic {
+  width: 78rpx;
+  height: 78rpx;
+  border-radius: 16rpx;
+  font-size: 38rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10rpx;
+}
+
+.oc-summary {
+  flex: 1;
+  min-width: 0;
+  margin-left: 8rpx;
+}
+
+.oc-summary-text {
+  font-size: 25rpx;
+  color: #1e2128;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.oc-summary-meta {
+  font-size: 20rpx;
+  color: #b4b9c2;
+  margin-top: 4rpx;
+}
+
+.oc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx solid #f4f0ea;
+}
+
+.oc-code {
+  font-size: 21rpx;
+  color: #9aa0ac;
+}
+
+.oc-total {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1e2128;
+}
+
+.oc-total .yuan {
+  font-size: 20rpx;
+  color: #5c6270;
+}
+
+.oc-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 18rpx;
+}
+
+.oc-actions .btn-ghost {
+  margin-right: 14rpx;
+}
+
+.empty-btn {
+  width: 280rpx;
+  height: 76rpx;
+  margin-top: 34rpx;
+  font-size: 26rpx;
+}
+
+.list-bottom {
+  height: 40rpx;
+}

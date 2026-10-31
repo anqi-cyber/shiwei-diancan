@@ -1,0 +1,63 @@
+<view class="page">
+  <!-- 状态筛选 -->
+  <view class="tabs">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="tab {{active === item.key ? 'on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onTab"
+    >
+      {{item.label}}
+      <text class="tab-count" wx:if="{{counts[item.key] > 0}}">{{counts[item.key]}}</text>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="list-wrap">
+    <view wx:for="{{list}}" wx:key="id" class="order-card" data-id="{{item.id}}" bindtap="onDetail">
+      <view class="oc-head">
+        <view class="oc-shop">
+          <text class="oc-shop-name">拾味小馆</text>
+          <text class="oc-mode">{{item.modeLabel}}</text>
+        </view>
+        <view class="oc-status {{item.tone}}">{{item.statusLabel}}</view>
+      </view>
+
+      <view class="oc-body">
+        <view class="oc-pics">
+          <view
+            wx:for="{{item.pics}}"
+            wx:for-item="it"
+            wx:key="key"
+            class="oc-pic"
+            style="background: linear-gradient(135deg, {{it.bg[0]}}, {{it.bg[1]}})"
+          >{{it.emoji}}</view>
+        </view>
+        <view class="oc-summary">
+          <view class="oc-summary-text">{{item.summary}}</view>
+          <view class="oc-summary-meta">共 {{item.itemCount}} 件 · {{item.timeText}}</view>
+        </view>
+      </view>
+
+      <view class="oc-foot">
+        <view class="oc-code" wx:if="{{item.isDoing}}">取餐码 {{item.pickupCode}}</view>
+        <view class="oc-code" wx:else>订单号 {{item.no}}</view>
+        <view class="oc-total"><text class="yuan">¥</text>{{item.totalText}}</view>
+      </view>
+
+      <view class="oc-actions">
+        <view class="btn-ghost" data-id="{{item.id}}" catchtap="onAgain" wx:if="{{item.canAgain}}">再来一单</view>
+        <view class="btn-mini" data-id="{{item.id}}" catchtap="onDetail">查看详情</view>
+      </view>
+    </view>
+
+    <view wx:if="{{!loading && !list.length}}" class="empty">
+      <view class="empty-emoji">🧾</view>
+      <view>还没有相关订单</view>
+      <view class="empty-tip">去点一份现炒的热菜吧</view>
+      <view class="btn-primary empty-btn" bindtap="onGoMenu">去点餐</view>
+    </view>
+
+    <view class="list-bottom"></view>
+  </scroll-view>
+</view>

@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/menu/menu",
+    "pages/orders/orders",
+    "pages/mine/mine",
+    "pages/confirm/confirm",
+    "pages/order-detail/order-detail",
+    "pages/admin/admin",
+    "pages/admin-orders/admin-orders",
+    "pages/admin-dishes/admin-dishes",
+    "pages/admin-dish-edit/admin-dish-edit"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFF8F1",
+    "navigationBarTitleText": "拾味小馆",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F3EE",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#9AA0AC",
+    "selectedColor": "#F4511E",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/menu/menu",
+        "text": "点餐",
+        "iconPath": "images/tab-menu.png",
+        "selectedIconPath": "images/tab-menu-on.png"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "text": "订单",
+        "iconPath": "images/tab-orders.png",
+        "selectedIconPath": "images/tab-orders-on.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tab-mine.png",
+        "selectedIconPath": "images/tab-mine-on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

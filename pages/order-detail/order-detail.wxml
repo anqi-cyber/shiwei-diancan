@@ -1,0 +1,116 @@
+<view class="page">
+  <block wx:if="{{!missing}}">
+    <scroll-view scroll-y class="scroll">
+      <!-- 状态头图 -->
+      <view class="hero {{heroClass}}">
+        <view class="hero-status">{{meta.label}}</view>
+        <view class="hero-desc">{{meta.desc}}</view>
+
+        <view class="hero-code" wx:if="{{order.status === 'accepted' || order.status === 'ready'}}">
+          <view class="code-label">取餐码</view>
+          <view class="code-num">{{order.pickupCode}}</view>
+          <view class="code-tip">请留意取餐台叫号</view>
+        </view>
+        <view class="hero-mode" wx:else>{{modeLabel}}</view>
+      </view>
+
+      <!-- 进度 -->
+      <view class="card steps-card">
+        <view class="card-title">订单进度</view>
+        <view class="steps">
+          <view wx:for="{{steps}}" wx:key="key" class="step {{item.done ? 'done' : ''}} {{item.active ? 'active' : ''}}">
+            <view class="step-line">
+              <view class="step-dot"></view>
+              <view class="step-bar" wx:if="{{index < steps.length - 1}}"></view>
+            </view>
+            <view class="step-main">
+              <view class="step-label">{{item.label}}</view>
+              <view class="step-time" wx:if="{{item.time}}">{{item.time}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="cancel-tip" wx:if="{{order.status === 'canceled'}}">订单已取消，如有疑问请联系商家</view>
+      </view>
+
+      <!-- 商品 -->
+      <view class="card">
+        <view class="card-title">
+          {{order.shopName}}
+          <text class="card-sub">{{modeLabel}}</text>
+        </view>
+        <view wx:for="{{items}}" wx:key="key" class="item">
+          <view class="item-pic" style="background: linear-gradient(135deg, {{item.bg[0]}}, {{item.bg[1]}})">{{item.emoji}}</view>
+          <view class="item-main">
+            <view class="item-name">{{item.name}}</view>
+            <view class="item-spec" wx:if="{{item.specText}}">{{item.specText}}</view>
+          </view>
+          <view class="item-qty">×{{item.qty}}</view>
+          <view class="item-price">¥{{item.lineText}}</view>
+        </view>
+
+        <view class="line"></view>
+
+        <view class="fee-row">
+          <text>菜品金额</text>
+          <text>¥{{subtotalText}}</text>
+        </view>
+        <view class="fee-row" wx:if="{{order.packingFee > 0}}">
+          <text>打包费</text>
+          <text>¥{{packingFeeText}}</text>
+        </view>
+        <view class="fee-row" wx:if="{{order.discount > 0}}">
+          <text>满减优惠</text>
+          <text class="minus">-¥{{discountText}}</text>
+        </view>
+        <view class="fee-row total-row">
+          <text>实付金额</text>
+          <text class="total">¥{{totalText}}</text>
+        </view>
+      </view>
+
+      <!-- 订单信息 -->
+      <view class="card">
+        <view class="card-title">订单信息</view>
+        <view class="info-row">
+          <text class="info-label">订单编号</text>
+          <view class="info-value" bindtap="onCopyNo">
+            {{order.no}} <text class="copy">复制</text>
+          </view>
+        </view>
+        <view class="info-row">
+          <text class="info-label">下单时间</text>
+          <text class="info-value">{{createdAtText}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">就餐方式</text>
+          <text class="info-value">{{modeLabel}}</text>
+        </view>
+        <view class="info-row" wx:if="{{order.people > 0}}">
+          <text class="info-label">用餐人数</text>
+          <text class="info-value">{{order.people}} 人</text>
+        </view>
+        <view class="info-row" wx:if="{{order.remark}}">
+          <text class="info-label">备注</text>
+          <text class="info-value remark">{{order.remark}}</text>
+        </view>
+      </view>
+
+      <view class="scroll-bottom"></view>
+    </scroll-view>
+
+    <!-- 底部操作 -->
+    <view class="bottom-bar">
+      <view class="bar-btn ghost" bindtap="onCall">联系商家</view>
+      <view wx:if="{{actionMode === 'pending'}}" class="bar-btn danger" bindtap="onCancel">取消订单</view>
+      <view wx:elif="{{actionMode === 'done'}}" class="bar-btn primary" bindtap="onAgain">再来一单</view>
+      <view wx:else class="bar-btn primary" bindtap="onGoMenu">继续点餐</view>
+    </view>
+  </block>
+
+  <view wx:else class="empty missing">
+    <view class="empty-emoji">🔍</view>
+    <view>没有找到这笔订单</view>
+    <view class="empty-tip">可能已被清理，去订单列表看看</view>
+    <view class="btn-primary missing-btn" bindtap="onGoOrders">查看全部订单</view>
+  </view>
+</view>

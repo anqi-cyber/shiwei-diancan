@@ -1,0 +1,140 @@
+<view class="page">
+  <scroll-view scroll-y class="scroll">
+    <!-- 就餐方式 -->
+    <view class="card">
+      <view class="block-title">就餐方式</view>
+      <view class="mode-row">
+        <view class="mode-chip {{mode === 'dinein' ? 'on' : ''}}" data-key="dinein" bindtap="onModeTap">
+          <text class="mode-emoji">🍽️</text>
+          <text>堂食</text>
+        </view>
+        <view class="mode-chip {{mode === 'takeaway' ? 'on' : ''}}" data-key="takeaway" bindtap="onModeTap">
+          <text class="mode-emoji">🥡</text>
+          <text>到店自取</text>
+        </view>
+      </view>
+
+      <view class="line"></view>
+
+      <view wx:if="{{mode === 'dinein'}}" class="row-line">
+        <text class="label">桌号</text>
+        <picker
+          class="value-picker"
+          mode="selector"
+          range="{{tables}}"
+          value="{{tableIndex}}"
+          bindchange="onTableChange"
+        >
+          <view class="value">{{tableNo}} <text class="chev">›</text></view>
+        </picker>
+      </view>
+      <view wx:else class="row-line">
+        <text class="label">预计取餐</text>
+        <text class="value">约 20 分钟</text>
+      </view>
+
+      <view class="row-line">
+        <text class="label">用餐人数</text>
+        <view class="stepper">
+          <view class="step-btn minus" bindtap="onPeopleMinus">−</view>
+          <text class="step-num">{{people}}</text>
+          <view class="step-btn plus" bindtap="onPeoplePlus">+</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品清单 -->
+    <view class="card">
+      <view class="block-title">
+        商品清单
+        <text class="count">共 {{items.length}} 项</text>
+      </view>
+      <view wx:for="{{items}}" wx:key="key" class="item">
+        <view class="item-pic" style="background: linear-gradient(135deg, {{item.bg[0]}}, {{item.bg[1]}})">{{item.emoji}}</view>
+        <view class="item-main">
+          <view class="item-name">{{item.name}}</view>
+          <view class="item-spec" wx:if="{{item.specText}}">{{item.specText}}</view>
+        </view>
+        <view class="item-qty">×{{item.qty}}</view>
+        <view class="item-price">¥{{item.unitPrice * item.qty}}</view>
+      </view>
+      <view class="line"></view>
+      <view class="sum-row">
+        <text>小计</text>
+        <text class="sum-value">¥{{subtotalText}}</text>
+      </view>
+    </view>
+
+    <!-- 满减 -->
+    <view class="card coupon">
+      <view class="coupon-icon">🎟️</view>
+      <view class="coupon-main">
+        <view class="coupon-title">满 {{threshold}} 减 {{discountAmount}}</view>
+        <view class="coupon-sub" wx:if="{{gapText}}">{{gapText}}</view>
+        <view class="coupon-sub" wx:else>已满足条件，本单立减</view>
+      </view>
+      <view class="coupon-state {{discount > 0 ? 'on' : ''}}">
+        {{discount > 0 ? '-¥' + discountText : '未满足'}}
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class="card">
+      <view class="block-title">
+        备注
+        <text class="count">口味 / 忌口可在此说明</text>
+      </view>
+      <view class="quick-tags">
+        <view
+          wx:for="{{quickTags}}"
+          wx:key="*this"
+          class="quick-tag"
+          data-label="{{item}}"
+          bindtap="onQuickTag"
+        >
+          {{item}}
+        </view>
+      </view>
+      <textarea
+        class="remark-input"
+        value="{{remark}}"
+        maxlength="50"
+        placeholder="例如：米饭分开装、少放盐"
+        placeholder-class="remark-ph"
+        bindinput="onRemarkInput"
+        auto-height
+      />
+      <view class="counter">{{remark.length}}/50</view>
+    </view>
+
+    <!-- 费用明细 -->
+    <view class="card fee">
+      <view class="fee-row">
+        <text class="fee-label">菜品金额</text>
+        <text>¥{{subtotalText}}</text>
+      </view>
+      <view class="fee-row" wx:if="{{packingFee > 0}}">
+        <text class="fee-label">打包费</text>
+        <text>¥{{packingFeeText}}</text>
+      </view>
+      <view class="fee-row" wx:if="{{discount > 0}}">
+        <text class="fee-label">满减优惠</text>
+        <text class="fee-minus">-¥{{discountText}}</text>
+      </view>
+    </view>
+
+    <view class="tips">提交后商家开始备餐，如有疑问可凭订单号联系店员</view>
+    <view class="scroll-bottom"></view>
+  </scroll-view>
+
+  <!-- 底部提交栏 -->
+  <view class="bottom-bar">
+    <view class="total-box">
+      <view class="total-label">合计</view>
+      <view class="total-value"><text class="yuan">¥</text>{{totalText}}</view>
+    </view>
+    <view class="btn-primary submit {{submitting ? 'disabled' : ''}}" bindtap="onSubmit">
+      {{submitting ? '提交中…' : '提交订单'}}
+    </view>
+  </view>
+</view>

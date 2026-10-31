@@ -1,0 +1,60 @@
+<view class="page">
+  <!-- 汇总 -->
+  <view class="summary">
+    <view class="sum-main">
+      <text class="sum-num">{{total}}</text>
+      <text class="sum-label">道菜品</text>
+    </view>
+    <view class="sum-side">在售 {{onSale}} 道 · 下架 {{total - onSale}} 道</view>
+  </view>
+
+  <!-- 分类筛选 -->
+  <scroll-view scroll-x class="filters" show-scrollbar="{{false}}" enhanced>
+    <view
+      wx:for="{{cats}}"
+      wx:key="id"
+      class="filter {{activeCat === item.id ? 'on' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="onFilter"
+    >
+      {{item.name}}
+    </view>
+  </scroll-view>
+
+  <!-- 菜品列表 -->
+  <view class="list-wrap">
+    <view wx:for="{{list}}" wx:key="id" class="dish" data-id="{{item.id}}" bindtap="onEdit">
+      <view class="d-pic" style="background: linear-gradient(135deg, {{item.bg[0]}}, {{item.bg[1]}})">{{item.emoji}}</view>
+      <view class="d-main">
+        <view class="d-name">
+          {{item.name}}
+          <text class="d-tag" wx:if="{{item.tags}}">{{item.tags}}</text>
+        </view>
+        <view class="d-meta">{{item.catName}} · {{item.specHint}} · 月售 {{item.sales}}</view>
+        <view class="d-price"><text class="yuan">¥</text>{{item.priceText}}</view>
+      </view>
+      <view class="d-side" catchtap="noop">
+        <switch
+          checked="{{item.isOn}}"
+          color="#F4511E"
+          data-id="{{item.id}}"
+          bindchange="onToggle"
+        />
+        <view class="d-edit" data-id="{{item.id}}" catchtap="onEdit">编辑</view>
+      </view>
+    </view>
+
+    <view wx:if="{{!list.length}}" class="empty">
+      <view class="empty-emoji">📖</view>
+      <view>这个分类下还没有菜品</view>
+      <view class="empty-tip">点击下方按钮新增一道菜</view>
+    </view>
+
+    <view class="list-bottom"></view>
+  </view>
+
+  <!-- 新增 -->
+  <view class="add-bar">
+    <view class="btn-primary add-btn" bindtap="onAdd">+ 新增菜品</view>
+  </view>
+</view>

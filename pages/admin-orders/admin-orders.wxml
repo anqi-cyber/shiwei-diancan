@@ -1,0 +1,59 @@
+<view class="page">
+  <!-- 状态筛选 -->
+  <scroll-view scroll-x class="tabs" show-scrollbar="{{false}}" enhanced>
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="tab {{active === item.key ? 'on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onTab"
+    >
+      {{item.label}}
+      <text class="tab-count" wx:if="{{counts[item.key] > 0}}">{{counts[item.key]}}</text>
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y class="list-wrap">
+    <view wx:for="{{list}}" wx:key="id" class="order" data-id="{{item.id}}" bindtap="onDetail">
+      <view class="o-head">
+        <view class="o-left">
+          <view class="o-no">#{{item.shortNo}}</view>
+          <view class="o-meta">{{item.modeLabel}}<text wx:if="{{item.people > 0}}"> · {{item.people}} 人</text></view>
+        </view>
+        <view class="o-status {{item.tone}}">{{item.statusLabel}}</view>
+      </view>
+
+      <view class="o-items">
+        <view wx:for="{{item.items}}" wx:for-item="it" wx:key="key" class="o-item">
+          <text class="o-item-name">{{it.name}}</text>
+          <text class="o-item-spec" wx:if="{{it.specText}}">{{it.specText}}</text>
+          <text class="o-item-qty">×{{it.qty}}</text>
+        </view>
+      </view>
+
+      <view class="o-remark" wx:if="{{item.remark}}">
+        <text class="o-remark-tag">备注</text>{{item.remark}}
+      </view>
+
+      <view class="o-foot">
+        <text class="o-time">{{item.timeText}}</text>
+        <text class="o-total"><text class="yuan">¥</text>{{item.totalText}}</text>
+      </view>
+
+      <view class="o-actions" wx:if="{{item.canAccept || item.canReady || item.canComplete || item.canCancel}}">
+        <view class="btn-ghost danger" wx:if="{{item.canCancel}}" data-id="{{item.id}}" catchtap="onCancel">取消订单</view>
+        <view class="btn-mini" wx:if="{{item.canAccept}}" data-id="{{item.id}}" catchtap="onAccept">接单</view>
+        <view class="btn-mini" wx:if="{{item.canReady}}" data-id="{{item.id}}" catchtap="onReady">完成制作</view>
+        <view class="btn-mini" wx:if="{{item.canComplete}}" data-id="{{item.id}}" catchtap="onComplete">完成订单</view>
+      </view>
+    </view>
+
+    <view wx:if="{{!list.length}}" class="empty">
+      <view class="empty-emoji">🍽️</view>
+      <view>当前没有{{active === 'all' ? '' : '该类'}}订单</view>
+      <view class="empty-tip">顾客下单后会实时出现在这里</view>
+    </view>
+
+    <view class="list-bottom"></view>
+  </scroll-view>
+</view>

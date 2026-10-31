@@ -1,0 +1,148 @@
+<view class="page">
+  <!-- 密码锁 -->
+  <block wx:if="{{locked}}">
+    <view class="lock">
+      <view class="lock-icon">🔐</view>
+      <view class="lock-title">商家后台</view>
+      <view class="lock-desc">请输入 4 位管理密码</view>
+      <input
+        class="pin-input"
+        type="number"
+        maxlength="4"
+        value="{{pin}}"
+        bindinput="onPinInput"
+        placeholder="••••"
+        placeholder-class="pin-ph"
+      />
+      <view class="pin-error" wx:if="{{pinError}}">{{pinError}}</view>
+      <view class="btn-primary lock-btn" bindtap="onUnlock">进入后台</view>
+      <view class="lock-tip">演示密码 8888</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <!-- 今日概览 -->
+    <view class="hero">
+      <view class="hero-top">
+        <view>
+          <view class="hero-label">今日营业额</view>
+          <view class="hero-value"><text class="hero-yuan">¥</text>{{stats.revenueText}}</view>
+        </view>
+        <view class="hero-badge {{shop.isOpen ? 'on' : 'off'}}">{{shop.isOpen ? '营业中' : '休息中'}}</view>
+      </view>
+      <view class="hero-meta">今日 {{stats.todayCount}} 笔有效订单 · 营业时间 {{shop.hours}}</view>
+    </view>
+
+    <!-- 指标 -->
+    <view class="metrics card">
+      <view class="metric">
+        <view class="metric-num warn">{{stats.pending}}</view>
+        <view class="metric-label">待接单</view>
+      </view>
+      <view class="metric-line"></view>
+      <view class="metric">
+        <view class="metric-num brand">{{stats.making}}</view>
+        <view class="metric-label">制作中</view>
+      </view>
+      <view class="metric-line"></view>
+      <view class="metric">
+        <view class="metric-num">{{stats.onSale}}</view>
+        <view class="metric-label">在售菜品</view>
+      </view>
+    </view>
+
+    <!-- 快捷操作 -->
+    <view class="section-title">快捷操作</view>
+    <view class="actions card">
+      <view class="action" bindtap="onGoOrders">
+        <view class="action-icon">🔔</view>
+        <view class="action-main">
+          <view class="action-title">订单处理</view>
+          <view class="action-sub">接单 · 出餐 · 完成</view>
+        </view>
+        <view class="action-badge" wx:if="{{stats.pending > 0}}">{{stats.pending}}</view>
+        <view class="action-arrow">›</view>
+      </view>
+      <view class="action" bindtap="onGoDishes">
+        <view class="action-icon">📖</view>
+        <view class="action-main">
+          <view class="action-title">菜品管理</view>
+          <view class="action-sub">上下架 · 改价 · 新增</view>
+        </view>
+        <view class="action-arrow">›</view>
+      </view>
+      <view class="action" bindtap="onOpenNotice">
+        <view class="action-icon">📢</view>
+        <view class="action-main">
+          <view class="action-title">门店公告</view>
+          <view class="action-sub ellipsis">{{shop.notice}}</view>
+        </view>
+        <view class="action-arrow">›</view>
+      </view>
+    </view>
+
+    <!-- 营业开关 -->
+    <view class="switch-row card">
+      <view class="switch-main">
+        <view class="switch-title">营业状态</view>
+        <view class="switch-sub">{{shop.isOpen ? '顾客可以正常下单' : '顾客暂时无法下单'}}</view>
+      </view>
+      <switch checked="{{shop.isOpen}}" color="#F4511E" bindchange="onToggleOpen" />
+    </view>
+
+    <!-- 最近订单 -->
+    <view class="section-title">最近订单</view>
+    <view class="recent card" wx:if="{{recent.length}}">
+      <view
+        wx:for="{{recent}}"
+        wx:key="id"
+        class="r-item"
+        data-id="{{item.id}}"
+        bindtap="onOpenDetail"
+      >
+        <view class="r-top">
+          <view class="r-left">
+            <text class="r-status {{item.tone}}">{{item.statusLabel}}</text>
+            <text class="r-mode">{{item.modeLabel}}</text>
+          </view>
+          <text class="r-time">{{item.timeText}}</text>
+        </view>
+        <view class="r-summary">{{item.summary}}</view>
+        <view class="r-bottom">
+          <text class="r-total"><text class="yuan">¥</text>{{item.totalText}}</text>
+          <view
+            wx:if="{{item.isPending}}"
+            class="btn-mini"
+            data-id="{{item.id}}"
+            catchtap="onAccept"
+          >接单</view>
+        </view>
+      </view>
+    </view>
+    <view class="recent-empty card" wx:else>
+      <text>暂无订单，顾客下单后会出现在这里</text>
+    </view>
+
+    <view class="lock-out" bindtap="onLock">退出后台</view>
+  </block>
+
+  <!-- 公告编辑 -->
+  <view class="mask {{showNotice ? 'show' : ''}}" bindtap="onCloseNotice"></view>
+  <view class="notice-sheet {{showNotice ? 'show' : ''}}">
+    <view class="ns-title">修改门店公告</view>
+    <textarea
+      class="ns-input"
+      value="{{noticeDraft}}"
+      maxlength="60"
+      placeholder="例如：本店现炒现做，高峰期出餐约 15 分钟"
+      placeholder-class="ns-ph"
+      bindinput="onNoticeInput"
+      auto-height
+    />
+    <view class="ns-count">{{noticeDraft.length}}/60</view>
+    <view class="ns-actions">
+      <view class="btn-ghost" bindtap="onCloseNotice">取消</view>
+      <view class="btn-primary ns-save" bindtap="onSaveNotice">保存</view>
+    </view>
+  </view>
+</view>

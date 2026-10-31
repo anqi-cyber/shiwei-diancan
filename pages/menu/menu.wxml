@@ -1,0 +1,228 @@
+<view class="page">
+  <!-- 店铺信息 -->
+  <view class="header js-header">
+    <view class="shop">
+      <view class="shop-logo">拾</view>
+      <view class="shop-main">
+        <view class="shop-name">
+          {{shop.name}}<text class="shop-branch">{{shop.branch}}</text>
+        </view>
+        <view class="shop-meta">
+          <text class="star">★ {{shop.rating}}</text>
+          <text class="meta-text"> · 月售 {{shop.monthSales}} · {{shop.hours}}</text>
+        </view>
+      </view>
+      <view class="shop-state {{shop.isOpen ? 'open' : 'closed'}}">{{shop.isOpen ? '营业中' : '休息中'}}</view>
+    </view>
+
+    <view class="notice" bindtap="onNoticeTap">
+      <text class="notice-icon">📢</text>
+      <text class="notice-text">{{shop.notice}}</text>
+      <text class="notice-arrow">›</text>
+    </view>
+
+    <view class="mode-row">
+      <view class="modes">
+        <view
+          wx:for="{{modes}}"
+          wx:key="key"
+          class="mode {{mode === item.key ? 'on' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="onModeTap"
+        >
+          {{item.label}}
+        </view>
+      </view>
+      <picker
+        wx:if="{{mode === 'dinein'}}"
+        mode="selector"
+        range="{{shop.tables}}"
+        value="{{tableIndex}}"
+        bindchange="onTableChange"
+      >
+        <view class="table-pick">桌号 {{tableNo}}<text class="chev">›</text></view>
+      </picker>
+      <view wx:else class="table-pick">约 {{pickupMinutes}} 分钟出餐</view>
+    </view>
+  </view>
+
+  <!-- 分类 + 菜单 -->
+  <view class="body">
+    <scroll-view class="cats" scroll-y>
+      <view
+        wx:for="{{sections}}"
+        wx:key="id"
+        class="cat {{activeCat === item.id ? 'on' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onCatTap"
+      >
+        <text class="cat-text">{{item.name}}</text>
+      </view>
+    </scroll-view>
+
+    <scroll-view
+      class="list js-list"
+      scroll-y
+      scroll-with-animation
+      scroll-into-view="{{scrollInto}}"
+      bindscroll="onListScroll"
+      enhanced
+      show-scrollbar="{{false}}"
+    >
+      <view
+        wx:for="{{sections}}"
+        wx:key="id"
+        id="sec-{{item.id}}"
+        class="section js-section"
+      >
+        <view class="section-head">
+          <text class="section-name">{{item.name}}</text>
+          <text class="section-sub">{{item.sub}}</text>
+        </view>
+
+        <view wx:for="{{item.dishes}}" wx:for-item="dish" wx:key="id" class="dish">
+          <view
+            class="dish-pic"
+            style="background: linear-gradient(135deg, {{dish.bg[0]}}, {{dish.bg[1]}})"
+          >{{dish.emoji}}</view>
+
+          <view class="dish-info">
+            <view class="dish-name">{{dish.name}}</view>
+            <view class="dish-tags" wx:if="{{dish.tags.length}}">
+              <text
+                wx:for="{{dish.tags}}"
+                wx:for-item="tag"
+                wx:key="text"
+                class="tag tag-{{tag.type}}"
+              >{{tag.text}}</text>
+            </view>
+            <view class="dish-desc">{{dish.desc}}</view>
+            <view class="dish-foot">
+              <view class="dish-price"><text class="yuan">¥</text>{{dish.priceText}}</view>
+
+              <view
+                wx:if="{{dish.specs.length}}"
+                class="btn-spec"
+                data-id="{{dish.id}}"
+                catchtap="onSpecTap"
+              >
+                选规格<text wx:if="{{dish.qty > 0}}" class="spec-dot">{{dish.qty}}</text>
+              </view>
+
+              <view wx:elif="{{dish.qty > 0}}" class="stepper">
+                <view class="step-btn minus" data-id="{{dish.id}}" catchtap="onMinusTap">−</view>
+                <text class="step-num">{{dish.qty}}</text>
+                <view class="step-btn plus" data-id="{{dish.id}}" catchtap="onAddTap">+</view>
+              </view>
+
+              <view wx:else class="btn-add" data-id="{{dish.id}}" catchtap="onAddTap">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{!sections.length}}" class="empty">
+        <view class="empty-emoji">🍳</view>
+        <view>今天还没有上架的菜品</view>
+        <view class="empty-tip">商家正在备菜，请稍后再来</view>
+      </view>
+
+      <view class="list-end" wx:if="{{sections.length}}">— 已经到底啦 —</view>
+      <view class="list-bottom"></view>
+    </scroll-view>
+  </view>
+
+  <!-- 购物车栏 -->
+  <view class="cartbar-wrap js-cartbar">
+    <view class="cartbar" bindtap="onCartToggle">
+      <view class="cart-icon {{bump ? 'bump' : ''}}">
+        <text>🛒</text>
+        <view wx:if="{{cartCount > 0}}" class="badge">{{cartCount}}</view>
+      </view>
+      <view class="cart-sum">
+        <view wx:if="{{cartCount > 0}}" class="cart-total"><text class="yuan">¥</text>{{cartAmountText}}</view>
+        <view wx:else class="cart-empty">购物车是空的</view>
+        <view class="cart-tip" wx:if="{{cartCount > 0}}">{{cartTip || '堂食免打包费'}}</view>
+      </view>
+      <view class="cart-go {{cartCount > 0 ? '' : 'disabled'}}" catchtap="onCheckout">
+        {{mode === 'dinein' ? '去下单' : '去结算'}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 购物车遮罩 -->
+  <view class="mask {{showCart ? 'show' : ''}}" bindtap="onMaskTap"></view>
+
+  <!-- 已选商品面板 -->
+  <view class="cart-panel {{showCart ? 'show' : ''}}">
+    <view class="cp-head">
+      <text class="cp-title">已选商品</text>
+      <text class="cp-clear" bindtap="onClearCart">清空</text>
+    </view>
+    <scroll-view scroll-y class="cp-list">
+      <view wx:for="{{cartItems}}" wx:key="key" class="cp-item">
+        <view class="cp-pic" style="background: linear-gradient(135deg, {{item.bg[0]}}, {{item.bg[1]}})">{{item.emoji}}</view>
+        <view class="cp-info">
+          <view class="cp-name">{{item.name}}</view>
+          <view class="cp-spec" wx:if="{{item.specText}}">{{item.specText}}</view>
+        </view>
+        <view class="cp-price">¥{{item.unitPrice}}</view>
+        <view class="cp-step">
+          <view class="step-btn minus" data-key="{{item.key}}" bindtap="onCartMinus">−</view>
+          <text class="step-num">{{item.qty}}</text>
+          <view class="step-btn plus" data-key="{{item.key}}" bindtap="onCartPlus">+</view>
+        </view>
+      </view>
+      <view class="cp-bottom"></view>
+    </scroll-view>
+  </view>
+
+  <!-- 规格弹窗 -->
+  <view class="sheet-mask {{showSpec ? 'show' : ''}}" bindtap="onMaskTap"></view>
+  <view class="sheet {{showSpec ? 'show' : ''}}">
+    <view class="sheet-head" wx:if="{{dish}}">
+      <view class="sheet-pic" style="background: linear-gradient(135deg, {{dish.bg[0]}}, {{dish.bg[1]}})">{{dish.emoji}}</view>
+      <view class="sheet-title">
+        <view class="sheet-name">{{dish.name}}</view>
+        <view class="sheet-desc">{{dish.desc}}</view>
+      </view>
+      <view class="sheet-close" catchtap="onSpecClose">✕</view>
+    </view>
+
+    <scroll-view scroll-y class="sheet-body" wx:if="{{dish}}">
+      <view wx:for="{{dish.specs}}" wx:for-item="opt" wx:for-index="oi" wx:key="name" class="spec-group">
+        <view class="spec-title">
+          {{opt.name}}
+          <text class="spec-req" wx:if="{{opt.required}}">必选</text>
+        </view>
+        <view class="spec-values">
+          <view
+            wx:for="{{opt.values}}"
+            wx:for-item="v"
+            wx:for-index="vi"
+            wx:key="label"
+            class="spec-val {{specSelections[oi] === vi ? 'on' : ''}}"
+            data-oi="{{oi}}"
+            data-vi="{{vi}}"
+            catchtap="onSpecChoose"
+          >
+            {{v.label}}<text wx:if="{{v.delta}}" class="spec-delta">+{{v.delta}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="sheet-foot">
+      <view class="sheet-price">
+        <text class="yuan">¥</text>{{specPriceText}}
+        <text class="sheet-price-tip">/ {{specQty}} 份</text>
+      </view>
+      <view class="sheet-stepper">
+        <view class="step-btn minus" catchtap="onSpecMinus">−</view>
+        <text class="step-num">{{specQty}}</text>
+        <view class="step-btn plus" catchtap="onSpecPlus">+</view>
+      </view>
+      <view class="btn-primary sheet-add" catchtap="onSpecAdd">加入购物车</view>
+    </view>
+  </view>
+</view>

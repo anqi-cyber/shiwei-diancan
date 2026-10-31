@@ -1,0 +1,281 @@
+.page {
+  min-height: 100vh;
+  background: #f7f3ee;
+  padding: 24rpx 24rpx 210rpx;
+  box-sizing: border-box;
+}
+
+/* 预览 */
+.preview {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #fff7f0, #fffdfa);
+  border: 1rpx solid #ffe8d8;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.p-pic {
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 22rpx;
+  font-size: 62rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.p-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 22rpx;
+}
+
+.p-name {
+  font-size: 31rpx;
+  font-weight: 700;
+  color: #1e2128;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.p-desc {
+  font-size: 21rpx;
+  color: #9aa0ac;
+  margin-top: 4rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.p-price {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #f4511e;
+  margin-top: 8rpx;
+  line-height: 1.1;
+}
+
+.p-price .yuan {
+  font-size: 22rpx;
+}
+
+.p-state {
+  font-size: 20rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+  flex: none;
+}
+
+.p-state.on {
+  color: #21a366;
+  background: #eaf7f0;
+}
+
+.p-state.off {
+  color: #9aa0ac;
+  background: #f4f1ec;
+}
+
+/* 表单 */
+.card {
+  margin-bottom: 20rpx;
+  padding: 8rpx 28rpx;
+}
+
+.card-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  padding: 22rpx 0 6rpx;
+}
+
+.card-sub {
+  font-size: 20rpx;
+  color: #b4b9c2;
+  font-weight: 400;
+  margin-left: 8rpx;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  min-height: 96rpx;
+  border-bottom: 1rpx solid #f6f2ec;
+}
+
+.form-row:last-child {
+  border-bottom: none;
+}
+
+.f-label {
+  width: 160rpx;
+  font-size: 26rpx;
+  color: #5c6270;
+  flex: none;
+}
+
+.f-input {
+  flex: 1;
+  font-size: 27rpx;
+  color: #1e2128;
+  text-align: right;
+}
+
+.f-ph {
+  color: #c3c7ce;
+  font-size: 25rpx;
+}
+
+.f-unit {
+  font-size: 24rpx;
+  color: #9aa0ac;
+  margin-left: 8rpx;
+}
+
+.f-value {
+  font-size: 27rpx;
+  color: #1e2128;
+}
+
+.chev {
+  color: #b9bec7;
+  margin-left: 6rpx;
+}
+
+/* 图标 */
+.emoji-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10rpx 0 22rpx;
+}
+
+.emoji-item {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 46rpx;
+  margin: 0 14rpx 14rpx 0;
+  border: 4rpx solid transparent;
+  box-sizing: border-box;
+}
+
+.emoji-item.on {
+  border-color: #f4511e;
+  box-shadow: 0 6rpx 16rpx rgba(244, 81, 30, 0.24);
+}
+
+/* 标签 */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 14rpx 0 24rpx;
+}
+
+.chip {
+  padding: 12rpx 28rpx;
+  border-radius: 999rpx;
+  background: #f8f5f0;
+  color: #5c6270;
+  font-size: 24rpx;
+  margin: 0 14rpx 14rpx 0;
+  border: 1rpx solid #f8f5f0;
+}
+
+.chip.on {
+  background: #fff1e9;
+  border-color: #ffc7ac;
+  color: #e85525;
+  font-weight: 600;
+}
+
+/* 规格 */
+.spec-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f6f2ec;
+  font-size: 26rpx;
+  color: #5c6270;
+}
+
+.spec-option:last-child {
+  border-bottom: none;
+}
+
+.spec-option.on {
+  color: #e85525;
+  font-weight: 600;
+}
+
+.radio {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #e4dfd8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.spec-option.on .radio {
+  border-color: #f4511e;
+}
+
+.radio-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #f4511e;
+}
+
+/* 上架 */
+.switch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 28rpx;
+}
+
+.switch-title {
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+.switch-sub {
+  font-size: 21rpx;
+  color: #b4b9c2;
+  margin-top: 3rpx;
+}
+
+.delete-link {
+  text-align: center;
+  font-size: 24rpx;
+  color: #e5484d;
+  padding: 30rpx 0 10rpx;
+}
+
+.scroll-bottom {
+  height: 20rpx;
+}
+
+/* 底部栏 */
+.cancel {
+  flex: 1;
+  height: 84rpx;
+  font-size: 27rpx;
+}
+
+.save {
+  flex: 2;
+  height: 84rpx;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
